@@ -14,6 +14,10 @@ loadSprite("hero", "sprites/char.png", {
             idleDown: 1,
             runLeft: { from: 3, to: 5},
             idleLeft: 4,
+            runRight: { from: 6, to: 8},
+            idleRight: 7,
+            runUp: { from: 9, to: 11},
+            idleUp: 10,
         },
     },
 )
@@ -34,6 +38,8 @@ const player = add([
     dir: RIGHT,
     dead: false,
   },
+  anchor("center"),
+    scale(2),
 ])
 
 // ground
