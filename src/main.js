@@ -23,12 +23,12 @@ loadSprite("hero", "sprites/char.png", {
 )
 
 
-setGravity(200)
+setGravity(1200)
 
 const player = add([
   sprite("hero", { animSpeed: 0.1 }),
-  pos(100, 500),
-  color(255, 0, 0),
+  pos(100, 100),
+  // color(255, 0, 0),
   body(),
   area(),
   health(100),
@@ -79,4 +79,4 @@ player.on("hurt", () => {
   console.log("player hurt")
 })
 
-player.play("idleLeft")
+player.play("runRight")
