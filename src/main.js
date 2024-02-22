@@ -6,18 +6,31 @@ kaboom({
   fullscreen: true,
 })
 
-setGravity(1200)
+loadSprite("hero", "sprites/char.png", {
+        sliceX: 3,
+        sliceY: 4,
+        anims: {
+            runDown: { from: 0, to: 2 },
+            idleDown: 1,
+            runLeft: { from: 3, to: 5},
+            idleLeft: 4,
+        },
+    },
+)
+
+
+setGravity(200)
 
 const player = add([
-  rect(100, 100),
-  pos(100, 100),
+  sprite("hero", { animSpeed: 0.1 }),
+  pos(100, 500),
   color(255, 0, 0),
   body(),
   area(),
   health(100),
   "player",
   {
-    speed: 200,
+    speed: 20,
     dir: RIGHT,
     dead: false,
   },
@@ -59,3 +72,5 @@ player.onCollide("obstacle", () => {
 player.on("hurt", () => {
   console.log("player hurt")
 })
+
+player.play("idleLeft")
