@@ -1,10 +1,24 @@
 import { defineConfig } from "vite"
+import { resolve } from "path"
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  build: {
-    outDir: "docs",
-  },
-  base: "/04-game-project/",
-  // assetsInclude: ["**/*.html"]
+    // TODO: Der Eintrag muss auf den Repository-Namen geändert werden.
+    base: "/05-game-project/",
+
+    // Die Einträge hier sollten nicht geändert werden müssen, ausser es werden
+    // wichtige Datein verschoben und umbenannt.
+    build: {
+        outDir: "docs",
+        rollupOptions: {
+            input: {
+                main: resolve(__dirname, "index.html"),
+                game: resolve(__dirname, "game.html"),
+            }
+        }
+    },
+
+    // server
+    server: {
+        open: '/index.html'
+    }
 })
