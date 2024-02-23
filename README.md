@@ -1,8 +1,8 @@
 # Spielprojekt
 
-Dieses Repository bildet die Grundlage für ein Spielprojekt, das von Gruppen
-mit jeweils vier Mitgliedern bearbeitet wird. Für die Umsetzung des Spiels wird
-die Game-Engine [kaboom.js](https://kaboomjs.com/) verwendet.
+Dieses Repository bildet die Grundlage für ein Spielprojekt, das von Gruppen mit
+jeweils vier Mitgliedern bearbeitet wird. Für die Umsetzung des Spiels wird die
+Game-Engine [kaboom.js](https://kaboomjs.com/) verwendet.
 
 ## Installation
 
