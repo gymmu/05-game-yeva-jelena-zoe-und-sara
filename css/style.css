@@ -1,5 +1,41 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
+}
+
+body {
+    background-color: darkslategrey;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main>section {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+main>section:nth-child(2n-1) {
+    background-color: black;
+}
+
+main>section>h2 {
+    text-align: center;
 }
 
 .start-btn {
@@ -37,38 +73,4 @@
     grid-template-columns: 1fr 2fr;
     align-items: center;
     justify-content: center;
-}
-
-body {
-    background-color: darkslategrey;
-    color: white;
-    padding: 0;
-    margin: 0;
-}
-
-h1 {
-    font-size: 3rem;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-main > section {
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-bottom: 2rem;
-    margin-top: 2rem;
-    width: 100%;
-}
-
-main > section:nth-child(2n-1) {
-background-color: black;
-}
-
-main > section > h2 {
-    text-align: center;
 }
