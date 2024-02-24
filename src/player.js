@@ -6,7 +6,7 @@ export default function createPlayer() {
     pos(0, 0),
     body(),
     area({}),
-    health(100),
+    health(50),
     "player",
     {
       speed: TILESIZE * 5,

@@ -1,6 +1,6 @@
 export default function gameLogic(player) {
 
-    createHPBar(50, 20)
+    createHPBar(50, 20, player)
 
     onUpdate(() => {
 
@@ -39,7 +39,7 @@ export default function gameLogic(player) {
     })
 }
 
-function createHPBar(x, y) {
+function createHPBar(x, y, player) {
     add([
         text("HP", {size: 16, weight: "bold"}),
         pos(x, y),
@@ -50,7 +50,7 @@ function createHPBar(x, y) {
     add([
         pos(x + 10, y),
         anchor("left"),
-        rect(100, 10),
+        rect(player.hp(), 10),
         outline(4, GREEN.darken(100)),
         color(0, 0, 0),
         z(10),
@@ -61,7 +61,7 @@ function createHPBar(x, y) {
     add([
         anchor("left"),
         pos(x + 10, y),
-        rect(100, 10),
+        rect(player.hp(), 10),
         color(0, 255, 0),
         z(11),
         fixed(),

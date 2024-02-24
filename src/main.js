@@ -44,9 +44,9 @@ scene("finish", () => {
 
 scene("lose", () => {
   add([
-    text("Game over", { size: 32, font: "sinko" }),
+    text("Game over", { size: 44, font: "sinko" }),
     pos(width() / 2, height() / 2),
-    anchor("bottom"),
+    anchor("bot"),
   ])
 
   add([
@@ -73,6 +73,12 @@ scene("level-01", async () => {
   player.onCollide("goal", () => {
     go("level-02")
   })
+
+  onUpdate(() => {
+        if (player.pos.y > 720) {
+            go("lose")
+        }
+    })
 
 })
 
