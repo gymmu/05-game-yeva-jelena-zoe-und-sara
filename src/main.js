@@ -40,6 +40,24 @@ scene("finish", () => {
   onKeyPress("space", () => {
     go("intro")
   })
+})
+
+scene("lose", () => {
+  add([
+    text("Game over", { size: 32, font: "sinko" }),
+    pos(width() / 2, height() / 2),
+    anchor("bottom"),
+  ])
+
+  add([
+    text("Drücke SPACE um das Spiel neu zu starten", { size: 22, font: "sinko" }),
+    pos(width() / 2, height() / 2 + 20),
+    anchor("top"),
+  ])
+
+  onKeyPress("space", () => {
+    go("level-01")
+  })
 
 })
 

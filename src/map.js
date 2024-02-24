@@ -21,15 +21,29 @@ export async function generateMapJumpAndRun(mapfile, player) {
                 ])
             } else if (char === "o") {
                 add([
-                    sprite("stone"),
+                    sprite("mushroom"),
                     pos(x * TILESIZE, y * TILESIZE),
                     body({ isStatic: true }),
                     area(),
                     "obstacle",
+                    {
+                        isConsumable: true
+                    }
+                ])
+            } else if (char === "f") {
+                add([
+                    sprite("flower"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                    "heal",
+                    {
+                        isConsumable: true
+                    }
                 ])
             } else if (char === "g") {
                 add([
-                    sprite("mushroom"),
+                    sprite("cave"),
                     pos(x * TILESIZE, y * TILESIZE),
                     body({ isStatic: true }),
                     area(),
@@ -97,7 +111,21 @@ export async function generateMapRPG(mapfile, player) {
                     sprite("flower"),
                     pos(x * TILESIZE, y * TILESIZE),
                     area(),
-                    "flower"
+                    "flower",
+                    "heal",
+                    {
+                        isConsumable: true
+                    }
+                ])
+            } else if (char === "m") {
+                add([
+                    sprite("mushroom"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    area(),
+                    "obstacle",
+                    {
+                        isConsumable: true
+                    }
                 ])
             }
         }
