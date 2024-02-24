@@ -29,6 +29,24 @@ export default async function generateMap(mapfile, player) {
           area(),
           "obstacle",
         ])
+      } else if (char === "g") {
+        add([
+          rect(TILESIZE, TILESIZE),
+          pos(x * TILESIZE, y * TILESIZE),
+          color(255, 255, 0),
+          body({ isStatic: true }),
+          area(),
+          "goal",
+        ])
+      } else if (char === "s") {
+        add([
+          rect(TILESIZE, TILESIZE),
+          pos(x * TILESIZE, y * TILESIZE),
+          color(255, 255, 0),
+          body({ isStatic: true }),
+          area(),
+          "goal",
+        ])
       }
     }
   }

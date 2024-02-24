@@ -1,7 +1,7 @@
 import kaboom from "kaboom"
 
 import loadSprites from "./sprites.js"
-import loadKeyboard from "./keyboard.js"
+import {loadKeyboardJumpAndRun, loadKeyboardRPG} from "./keyboard.js"
 import createPlayer from "./player.js"
 import addGeneralGameLogic from "./game.js"
 import generateMap from "./map.js"
@@ -30,14 +30,37 @@ scene("intro", () => {
   })
 })
 
+scene("finish", () => {
+  add([
+    text("Ziel erreicht", { size: 32, font: "sinko" }),
+    pos(width() / 2, height() / 2),
+    anchor("center"),
+  ])
+
+  onKeyPress("space", () => {
+    go("intro")
+  })
+
+})
+
 scene("level-01", async () => {
   setGravity(1200)
   const player = createPlayer()
-  loadKeyboard(player)
+  loadKeyboardJumpAndRun(player)
 
   await generateMap("maps/level-01.txt", player)
 
   addGeneralGameLogic(player)
+})
+
+scene("level-02", async () => {
+  const player = createPlayer()
+  loadKeyboardRPG(player)
+
+  await generateMap("maps/level-02.txt", player)
+
+  addGeneralGameLogic(player)
+
 })
 
 go("intro")

@@ -17,6 +17,10 @@ export default function gameLogic(player) {
     console.log(player.health)
   })
 
+  player.onCollide("goal", () => {
+    go("finish")
+  })
+
   player.on("hurt", () => {
     console.log("player hurt")
   })
