@@ -30,5 +30,14 @@ export default function createPlayer() {
     }
   }
 
+  player.setPosition = function (x, y) {
+    this.pos.x = x * TILESIZE
+    this.pos.y = y * TILESIZE
+  }
+
+    player.onUpdate(() => {
+     camPos(player.pos)
+     })
+
   return player
 }
