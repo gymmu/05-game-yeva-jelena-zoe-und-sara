@@ -1,53 +1,105 @@
 import { TILESIZE } from "./globals.js"
 
-export default async function generateMap(mapfile, player) {
-  const map = await fetch(mapfile)
-  const mapContent = await map.text()
-  const lines = mapContent.split("\n")
-  for (let y = 0; y < lines.length; y++) {
-    const line = lines[y]
-    for (let x = 0; x < line.length; x++) {
-      const char = line[x]
+export async function generateMapJumpAndRun(mapfile, player) {
+    const map = await fetch(mapfile)
+    const mapContent = await map.text()
+    const lines = mapContent.split("\n")
+    for (let y = 0; y < lines.length; y++) {
+        const line = lines[y]
+        for (let x = 0; x < line.length; x++) {
+            const char = line[x]
 
-      if (char === "p") {
-        player.setPosition(x, y)
-      } else if (char === "-") {
-        add([
-          rect(TILESIZE, TILESIZE),
-          pos(x * TILESIZE, y * TILESIZE),
-          color(0, 255, 0),
-          body({ isStatic: true }),
-          area(),
-          "ground",
-        ])
-      } else if (char === "o") {
-        add([
-          rect(TILESIZE, TILESIZE),
-          pos(x * TILESIZE, y * TILESIZE),
-          color(0, 0, 255),
-          body({ isStatic: true }),
-          area(),
-          "obstacle",
-        ])
-      } else if (char === "g") {
-        add([
-          rect(TILESIZE, TILESIZE),
-          pos(x * TILESIZE, y * TILESIZE),
-          color(255, 255, 0),
-          body({ isStatic: true }),
-          area(),
-          "goal",
-        ])
-      } else if (char === "s") {
-        add([
-          rect(TILESIZE, TILESIZE),
-          pos(x * TILESIZE, y * TILESIZE),
-          color(255, 255, 0),
-          body({ isStatic: true }),
-          area(),
-          "goal",
-        ])
-      }
+            if (char === "p") {
+                player.setPosition(x, y)
+            } else if (char === "-") {
+                add([
+                    sprite("wall"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                    "ground",
+                ])
+            } else if (char === "o") {
+                add([
+                    sprite("stone"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                    "obstacle",
+                ])
+            } else if (char === "g") {
+                add([
+                    sprite("mushroom"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                    "goal",
+                ])
+            }
+        }
     }
-  }
+}
+
+export async function generateMapRPG(mapfile, player) {
+    const map = await fetch(mapfile)
+    const mapContent = await map.text()
+    const lines = mapContent.split("\n")
+    for (let y = 0; y < lines.length; y++) {
+        const line = lines[y]
+        for (let x = 0; x < line.length; x++) {
+            const char = line[x]
+            add([
+                sprite("grass"),
+                pos(x * TILESIZE, y * TILESIZE),
+                z(-10)
+            ])
+
+            if (char === "p") {
+                player.setPosition(x, y)
+            } else if (char === "s") {
+                add([
+                    sprite("stone"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                ])
+            } else if (char === "w") {
+                add([
+                    sprite("wall"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                ])
+            } else if (char === "c") {
+                add([
+                    sprite("cave"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                    "cave"
+                ])
+            } else if (char === "T") {
+                add([
+                    sprite("trunk"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                ])
+            } else if (char === "t") {
+                add([
+                    sprite("tree"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    body({ isStatic: true }),
+                    area(),
+                ])
+            } else if (char === "f") {
+                add([
+                    sprite("flower"),
+                    pos(x * TILESIZE, y * TILESIZE),
+                    area(),
+                    "flower"
+                ])
+            }
+        }
+    }
 }

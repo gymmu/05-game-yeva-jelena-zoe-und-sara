@@ -4,7 +4,7 @@ import loadSprites from "./sprites.js"
 import {loadKeyboardJumpAndRun, loadKeyboardRPG} from "./keyboard.js"
 import createPlayer from "./player.js"
 import addGeneralGameLogic from "./game.js"
-import generateMap from "./map.js"
+import {generateMapJumpAndRun, generateMapRPG} from "./map.js"
 
 import { TILESIZE } from "./globals.js"
 
@@ -48,19 +48,36 @@ scene("level-01", async () => {
   const player = createPlayer()
   loadKeyboardJumpAndRun(player)
 
-  await generateMap("maps/level-01.txt", player)
+  await generateMapJumpAndRun("maps/level-01.txt", player)
 
   addGeneralGameLogic(player)
+
+  player.onCollide("goal", () => {
+    go("level-02")
+  })
+
 })
 
 scene("level-02", async () => {
+  setGravity(0)
   const player = createPlayer()
   loadKeyboardRPG(player)
 
-  await generateMap("maps/level-02.txt", player)
+  await generateMapRPG("maps/level-02.txt", player)
 
   addGeneralGameLogic(player)
 
+  player.onCollide("cave", () => {
+        if (player.hasFlower === true) {
+
+    go("finish")
+        }
+  })
+
+  player.onCollide("flower", (flower) => {
+    flower.destroy()
+    player.hasFlower = true
+  })
 })
 
 go("intro")
