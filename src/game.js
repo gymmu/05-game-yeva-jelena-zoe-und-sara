@@ -1,7 +1,7 @@
-import {GAME} from "./globals.js"
+import { GAME } from "./globals.js"
 
 export default function gameLogic(player) {
-  createHPBar(50, 20, get("player")[0])
+  createHPBar(50, 20)
 
   onUpdate(() => {
     if (player.dir != null) {
@@ -24,18 +24,18 @@ export default function gameLogic(player) {
   })
 
   player.on("hurt", () => {
-    const hp = get("interface-hp-current", {recursive: true})[0]
+    const hp = get("interface-hp-current", { recursive: true })[0]
     hp.width = player.hp()
   })
 
   player.on("heal", () => {
-    const hp = get("interface-hp-current", {recursive: true})[0]
+    const hp = get("interface-hp-current", { recursive: true })[0]
     hp.width = player.hp()
-        const oldSpeed = player.speed
+    const oldSpeed = player.speed
     player.speed *= 1.2
     wait(2, () => {
-            player.speed = oldSpeed
-        })
+      player.speed = oldSpeed
+    })
   })
 
   player.on("death", () => {
@@ -44,39 +44,30 @@ export default function gameLogic(player) {
 }
 
 function createHPBar(x, y) {
+  const player = get("player")[0]
+  if (player == null) return
 
-    const player = get("player")[0]
-    if (player == null) return
+  const HP_BAR_WIDTH = 100
+  const HP_BAR_HEIGHT = 10
 
-    const HP_BAR_WIDTH = 100
-    const HP_BAR_HEIGHT = 10
+  const bar = add([pos(x, y), fixed(), z(10)])
 
-    const bar = add([
-        pos(x, y),
-        fixed(),
-        z(10),
-    ])
+  bar.add([text("HP", { size: 20 }), anchor("right")])
 
-    bar.add([
-        text("HP", {size: 20}),
-        anchor("right")
-    ])
+  bar.add([
+    rect(HP_BAR_WIDTH, HP_BAR_HEIGHT),
+    outline(4, GREEN.darken(100)),
+    color(0, 0, 0),
+    pos(20, 0),
+    anchor("left"),
+    "interface-hp-max",
+  ])
 
-    bar.add([    rect(HP_BAR_WIDTH, HP_BAR_HEIGHT),
-        outline(4, GREEN.darken(100)),
-        color(0, 0, 0),
-        pos(20, 0),
-        anchor("left"),
-        "interface-hp-max",
-    ])
-
-    bar.add([
-    rect(player.hp() / player.max_hp * HP_BAR_WIDTH, HP_BAR_HEIGHT),
+  bar.add([
+    rect((player.hp() / player.max_hp) * HP_BAR_WIDTH, HP_BAR_HEIGHT),
     color(0, 255, 0),
-        pos(20, 0),
-        anchor("left"),
+    pos(20, 0),
+    anchor("left"),
     "interface-hp-current",
-
-    ])
-
+  ])
 }

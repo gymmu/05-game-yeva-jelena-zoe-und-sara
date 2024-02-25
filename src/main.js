@@ -88,7 +88,7 @@ scene("intro", () => {
  * gewonnen ist.
  */
 scene("finish", () => {
-    player.destroy()
+  player.destroy()
   add([
     text("Ziel erreicht", { size: 32, font: "sinko" }),
     pos(width() / 2, height() / 2),
@@ -104,7 +104,7 @@ scene("finish", () => {
  * Spieler gestorben ist.
  */
 scene("lose", () => {
-    player.destroy()
+  player.destroy()
   add([
     text("Game over", { size: 44 }),
     pos(width() / 2, height() / 2),
@@ -149,27 +149,27 @@ scene("level-01", async () => {
   loadKeyboardJumpAndRun(player)
 
   // Hier lassen wir die Spielwelt erstellen.
-    // Wir müssen dieser Funktion auch den Spieler übergeben, damit die
-    // Position vom Spieler richtig gesetzt werden kann.
+  // Wir müssen dieser Funktion auch den Spieler übergeben, damit die
+  // Position vom Spieler richtig gesetzt werden kann.
   await generateMapJumpAndRun("maps/level-01.txt", player)
 
-    // Hier laden wir die generelle Spiellogik. Also was passieren soll wenn
-    // der Spieler mit einem Objekt kollidiert.
+  // Hier laden wir die generelle Spiellogik. Also was passieren soll wenn
+  // der Spieler mit einem Objekt kollidiert.
   addGeneralGameLogic(player)
 
-    // Hier wird zusätzliche Spiellogik erstellt, die nur in diesem Level
-    // verwendet wird.
-    // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
-    // kommen wir ins nächste Level.
+  // Hier wird zusätzliche Spiellogik erstellt, die nur in diesem Level
+  // verwendet wird.
+  // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
+  // kommen wir ins nächste Level.
   player.onCollide("goal", () => {
     go("level-02")
   })
 
-    // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
-    // es so das wenn der Spieler von einer PLattform stützt, dann hat man das
-    // Spiel verloren. Man könnte hier auch anders darauf reagieren, zum
-    // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
-    // Lebenspunkte von dem Spieler anpassen.
+  // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
+  // es so das wenn der Spieler von einer PLattform stützt, dann hat man das
+  // Spiel verloren. Man könnte hier auch anders darauf reagieren, zum
+  // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
+  // Lebenspunkte von dem Spieler anpassen.
   onUpdate(() => {
     if (player.pos.y > 720) {
       go("lose")
