@@ -1,5 +1,7 @@
+import {GAME} from "./globals.js"
+
 export default function gameLogic(player) {
-  createHPBar(50, 20, player)
+  createHPBar(50, 20, get("player")[0])
 
   onUpdate(() => {
     if (player.dir != null) {
@@ -22,14 +24,18 @@ export default function gameLogic(player) {
   })
 
   player.on("hurt", () => {
-    const hp = get("interface-hp-current")[0]
+    const hp = get("interface-hp-current", {recursive: true})[0]
     hp.width = player.hp()
   })
 
   player.on("heal", () => {
-    const hp = get("interface-hp-current")[0]
+    const hp = get("interface-hp-current", {recursive: true})[0]
     hp.width = player.hp()
+        const oldSpeed = player.speed
     player.speed *= 1.2
+    wait(2, () => {
+            player.speed = oldSpeed
+        })
   })
 
   player.on("death", () => {
@@ -37,32 +43,40 @@ export default function gameLogic(player) {
   })
 }
 
-function createHPBar(x, y, player) {
-  add([
-    text("HP", { size: 16, weight: "bold" }),
-    pos(x, y),
-    anchor("right"),
-    fixed(),
-  ])
+function createHPBar(x, y) {
 
-  add([
-    pos(x + 10, y),
-    anchor("left"),
-    rect(player.hp(), 10),
-    outline(4, GREEN.darken(100)),
-    color(0, 0, 0),
-    z(10),
-    fixed(),
-    "interface-hp-max",
-  ])
+    const player = get("player")[0]
+    if (player == null) return
 
-  add([
-    anchor("left"),
-    pos(x + 10, y),
-    rect(player.hp(), 10),
+    const HP_BAR_WIDTH = 100
+    const HP_BAR_HEIGHT = 10
+
+    const bar = add([
+        pos(x, y),
+        fixed(),
+        z(10),
+    ])
+
+    bar.add([
+        text("HP", {size: 20}),
+        anchor("right")
+    ])
+
+    bar.add([    rect(HP_BAR_WIDTH, HP_BAR_HEIGHT),
+        outline(4, GREEN.darken(100)),
+        color(0, 0, 0),
+        pos(20, 0),
+        anchor("left"),
+        "interface-hp-max",
+    ])
+
+    bar.add([
+    rect(player.hp() / player.max_hp * HP_BAR_WIDTH, HP_BAR_HEIGHT),
     color(0, 255, 0),
-    z(11),
-    fixed(),
+        pos(20, 0),
+        anchor("left"),
     "interface-hp-current",
-  ])
+
+    ])
+
 }

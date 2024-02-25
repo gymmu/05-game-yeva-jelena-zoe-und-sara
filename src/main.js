@@ -23,6 +23,8 @@ import { generateMapJumpAndRun, generateMapRPG } from "./map.js"
  */
 import { TILESIZE } from "./globals.js"
 
+let player = null
+
 /*
  * Hier wird die GameEngine initialisiert. Wir können hier verschiedene Dinge
  * anpassen. Wichtig ist das wir kaboom sagen wo unser Spiel gezeichnet werden
@@ -86,6 +88,7 @@ scene("intro", () => {
  * gewonnen ist.
  */
 scene("finish", () => {
+    player.destroy()
   add([
     text("Ziel erreicht", { size: 32, font: "sinko" }),
     pos(width() / 2, height() / 2),
@@ -101,6 +104,7 @@ scene("finish", () => {
  * Spieler gestorben ist.
  */
 scene("lose", () => {
+    player.destroy()
   add([
     text("Game over", { size: 44 }),
     pos(width() / 2, height() / 2),
@@ -139,20 +143,33 @@ scene("level-01", async () => {
   setGravity(1200)
 
   // Wir erstellen den Spieler
-  const player = createPlayer()
+  player = createPlayer()
 
   // Wir laden die Tasenbelegung für ein Jump'n'Run-Spiel.
   loadKeyboardJumpAndRun(player)
 
   // Hier lassen wir die Spielwelt erstellen.
+    // Wir müssen dieser Funktion auch den Spieler übergeben, damit die
+    // Position vom Spieler richtig gesetzt werden kann.
   await generateMapJumpAndRun("maps/level-01.txt", player)
 
+    // Hier laden wir die generelle Spiellogik. Also was passieren soll wenn
+    // der Spieler mit einem Objekt kollidiert.
   addGeneralGameLogic(player)
 
+    // Hier wird zusätzliche Spiellogik erstellt, die nur in diesem Level
+    // verwendet wird.
+    // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
+    // kommen wir ins nächste Level.
   player.onCollide("goal", () => {
     go("level-02")
   })
 
+    // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
+    // es so das wenn der Spieler von einer PLattform stützt, dann hat man das
+    // Spiel verloren. Man könnte hier auch anders darauf reagieren, zum
+    // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
+    // Lebenspunkte von dem Spieler anpassen.
   onUpdate(() => {
     if (player.pos.y > 720) {
       go("lose")
@@ -162,7 +179,7 @@ scene("level-01", async () => {
 
 scene("level-02", async () => {
   setGravity(0)
-  const player = createPlayer()
+  // const player = createPlayer()
   loadKeyboardRPG(player)
 
   await generateMapRPG("maps/level-02.txt", player)

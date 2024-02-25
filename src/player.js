@@ -7,11 +7,13 @@ export default function createPlayer() {
     body(),
     area({}),
     health(50),
+    stay(),
     "player",
     {
       speed: TILESIZE * 5,
       dir: null,
       dead: false,
+      max_hp: 100,
     },
   ])
 
