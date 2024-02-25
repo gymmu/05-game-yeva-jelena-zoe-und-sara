@@ -1,14 +1,38 @@
+// Dieser import lädt die GameEngine
 import kaboom from "kaboom"
 
+/* Hier werden Funktionen aus den eigenen Datein eingebunden.
+ * Die Dateien liegen jeweils im `src` Verzeichnis. Funktionen die in anderen
+ * Dateien definiert werden, und hier verwendet werden, müssen das
+ * Schlüsselwort `export` haben. Werden mehrere Funktionen exportiert, braucht
+ * es die `{}`-Klammern. Wird nur eine einzige Funktion exportiert, kann man
+ * diese mit dem Schlüsselwort `default` kennzeichnen, und dann kann die
+ * Funktion auch ohne `{}`-Klammer importiert werden.
+ */
 import loadSprites from "./sprites.js"
-import {loadKeyboardJumpAndRun, loadKeyboardRPG} from "./keyboard.js"
+import { loadKeyboardJumpAndRun, loadKeyboardRPG } from "./keyboard.js"
 import createPlayer from "./player.js"
 import addGeneralGameLogic from "./game.js"
-import {generateMapJumpAndRun, generateMapRPG} from "./map.js"
+import { generateMapJumpAndRun, generateMapRPG } from "./map.js"
 
+/* Wir können auch einzelne Variablen importieren.
+ * Das können wir verwenden um globale Konstanten zu definieren, die wir
+ * dann in verschiedenen Datein brauchen können. Das eignet sich vor allem
+ * für Dinge wie TILESIZE oder FPS. Diese möchten wir an einem Ort
+ * haben, und schnell um ganzen Code ändern können.
+ */
 import { TILESIZE } from "./globals.js"
 
+/*
+ * Hier wird die GameEngine initialisiert. Wir können hier verschiedene Dinge
+ * anpassen. Wichtig ist das wir kaboom sagen wo unser Spiel gezeichnet werden
+ * soll, dafür geben wir das HTML-Canvas-Element an.
+ * Ganz wichtig ist die Höhe und Breite von unserem Spiel, das müssen Sie so
+ * anpassen, dass es für Sie stimmt. Am besten verwenden Sie hier ein
+ * vielfaches von TILESIZE.
+ */
 kaboom({
+  font: "sinko",
   background: [0, 0, 0],
   debug: true,
   height: TILESIZE * 16,
@@ -16,15 +40,42 @@ kaboom({
   canvas: document.getElementById("game-canvas"),
 })
 
+/*
+ * Diese Funktion ladet die Graphiken und Animationen die wir später im Spiel
+ * verwenden möchten. Wir müssen diese Funktion noch vor allen anderen
+ * aufrufen, damit die Graphiken auch verfügbar sind.
+ */
 loadSprites()
 
+/*
+ * Die Funktion `scene` kommt von Kaboom, und erstellt uns einen
+ * abgeschlossenen Teil von unserem Spiel. Wir können das auch wie ein Level in
+ * unserem Spiel betrachten. Es können aber auch Menu-Bildschirme und
+ * GameOver-Bildschirme als Scenen erstellt werden.
+ *
+ * Eine Szene braucht immer einen Namen, und dann kommt eine Funktion. Diese
+ * wird dann ausgeführt, wenn wir zu der Szene wechseln.
+ *
+ * Mit der Funktion `go("intro")` können wir zur Intro-Szene wechseln.
+ */
 scene("intro", () => {
+  // Mit der `add`-Funktion können Objekte zu einer Szene hinzugefügt werden.
+  // Wir geben dem Spielobjekt eine Liste von Funktionen an, die sagen wie
+  // sich das Spielobjekt verhalten soll.
+  // Hier sagen wir dem Objekt das es Text haben soll, und an welcher
+  // Position der Text sein soll. Mit `anchor` können wir angeben wie das
+  // Objekt verankert werden soll. Versuchen Sie mal was passiert wenn Sie
+  // `anchor("botright)` verwenden.
   add([
-    text("Press SPACE to start", { size: 32, font: "sinko" }),
+    text("Press SPACE to start", { size: 32 }),
     pos(width() / 2, height() / 2),
     anchor("center"),
   ])
 
+  // Mit dieser Funktion können wir auf Tastendrucke reagieren. Diese können
+  // pro Szene anders angegeben werden. Hier wird mit `space` zur nächsten
+  // Szene gewechselt. In der nächsten Szene können wir `space` dann auch zum
+  // Springen verwenden.
   onKeyPress("space", () => {
     go("level-01")
   })
@@ -50,7 +101,10 @@ scene("lose", () => {
   ])
 
   add([
-    text("Drücke SPACE um das Spiel neu zu starten", { size: 22, font: "sinko" }),
+    text("Drücke SPACE um das Spiel neu zu starten", {
+      size: 22,
+      font: "sinko",
+    }),
     pos(width() / 2, height() / 2 + 20),
     anchor("top"),
   ])
@@ -58,7 +112,6 @@ scene("lose", () => {
   onKeyPress("space", () => {
     go("level-01")
   })
-
 })
 
 scene("level-01", async () => {
@@ -75,11 +128,10 @@ scene("level-01", async () => {
   })
 
   onUpdate(() => {
-        if (player.pos.y > 720) {
-            go("lose")
-        }
-    })
-
+    if (player.pos.y > 720) {
+      go("lose")
+    }
+  })
 })
 
 scene("level-02", async () => {
@@ -92,10 +144,9 @@ scene("level-02", async () => {
   addGeneralGameLogic(player)
 
   player.onCollide("cave", () => {
-        if (player.hasFlower === true) {
-
-    go("finish")
-        }
+    if (player.hasFlower === true) {
+      go("finish")
+    }
   })
 
   player.onCollide("flower", (flower) => {

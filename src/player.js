@@ -35,9 +35,9 @@ export default function createPlayer() {
     this.pos.y = y * TILESIZE
   }
 
-    player.onUpdate(() => {
-     camPos(player.pos)
-     })
+  player.onUpdate(() => {
+    camPos(player.pos)
+  })
 
   return player
 }

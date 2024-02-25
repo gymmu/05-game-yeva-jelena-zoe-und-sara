@@ -58,5 +58,4 @@ export function loadKeyboardRPG(player) {
     player.dir = null
     player.play("idleDown")
   })
-
 }
