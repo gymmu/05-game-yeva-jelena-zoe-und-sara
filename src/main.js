@@ -81,6 +81,10 @@ scene("intro", () => {
   })
 })
 
+/*
+ * Dies ist eine weitere Szene die angezeigt wird wenn das Spiel vorbei bzw.
+ * gewonnen ist.
+ */
 scene("finish", () => {
   add([
     text("Ziel erreicht", { size: 32, font: "sinko" }),
@@ -93,9 +97,12 @@ scene("finish", () => {
   })
 })
 
+/* Diese Szene  wird verwendet wenn das Spiel verloren ist, also wenn der
+ * Spieler gestorben ist.
+ */
 scene("lose", () => {
   add([
-    text("Game over", { size: 44, font: "sinko" }),
+    text("Game over", { size: 44 }),
     pos(width() / 2, height() / 2),
     anchor("bot"),
   ])
@@ -103,7 +110,6 @@ scene("lose", () => {
   add([
     text("Drücke SPACE um das Spiel neu zu starten", {
       size: 22,
-      font: "sinko",
     }),
     pos(width() / 2, height() / 2 + 20),
     anchor("top"),
@@ -114,11 +120,31 @@ scene("lose", () => {
   })
 })
 
+/* Das ist unser erstes Level. Hier können wir Dinge einstellen die nur für
+ * dieses Level gelten sollen, und aber auch Funktionen verwenden die in allen
+ * Levels gleich sind.
+ *
+ * Wir brauchen hier das Schlüsselwort `async` direkt vor der Funktion, weil
+ * wir innerhalb der Funktion eine spezielle Funktion aufrufen und warten
+ * müssen bis diese beendet ist. Dieses warten passiert mit dem Schlüsselwort
+ * `await`.
+ *
+ * Bei diesem ersten Level handelt es sich um ein Jump'n'Run-Spiel. Da müssen
+ * wir einige spezialisierte Funktionen verwenden.
+ *
+ */
 scene("level-01", async () => {
+  // Wir stellen die Gravitation ein, damit es sich um ein Jump'n'Run-Spiel
+  // handelt.
   setGravity(1200)
+
+  // Wir erstellen den Spieler
   const player = createPlayer()
+
+  // Wir laden die Tasenbelegung für ein Jump'n'Run-Spiel.
   loadKeyboardJumpAndRun(player)
 
+  // Hier lassen wir die Spielwelt erstellen.
   await generateMapJumpAndRun("maps/level-01.txt", player)
 
   addGeneralGameLogic(player)
