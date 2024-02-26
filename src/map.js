@@ -1,6 +1,9 @@
+import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
+import {getPlayer } from "./player.js"
 
-export async function generateMapJumpAndRun(mapfile, player) {
+export async function generateMapJumpAndRun(mapfile) {
+  const player = getPlayer()
   const map = await fetch(mapfile)
   const mapContent = await map.text()
   const lines = mapContent.split("\n")
@@ -12,41 +15,41 @@ export async function generateMapJumpAndRun(mapfile, player) {
       if (char === "p") {
         player.setPosition(x, y)
       } else if (char === "-") {
-        add([
-          sprite("wall"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("wall"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
           "ground",
         ])
       } else if (char === "o") {
-        add([
-          sprite("mushroom"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("mushroom"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
           "obstacle",
           {
             isConsumable: true,
           },
         ])
       } else if (char === "f") {
-        add([
-          sprite("flower"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("flower"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
           "heal",
           {
             isConsumable: true,
           },
         ])
       } else if (char === "g") {
-        add([
-          sprite("cave"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("cave"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
           "goal",
         ])
       }
@@ -54,7 +57,8 @@ export async function generateMapJumpAndRun(mapfile, player) {
   }
 }
 
-export async function generateMapRPG(mapfile, player) {
+export async function generateMapRPG(mapfile) {
+  const player = getPlayer()
   const map = await fetch(mapfile)
   const mapContent = await map.text()
   const lines = mapContent.split("\n")
@@ -62,51 +66,51 @@ export async function generateMapRPG(mapfile, player) {
     const line = lines[y]
     for (let x = 0; x < line.length; x++) {
       const char = line[x]
-      add([sprite("grass"), pos(x * TILESIZE, y * TILESIZE), z(-10)])
+      k.add([k.sprite("grass"), k.pos(x * TILESIZE, y * TILESIZE), k.z(-10)])
 
       if (char === "p") {
         player.setPosition(x, y)
       } else if (char === "s") {
-        add([
-          sprite("stone"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("stone"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
         ])
       } else if (char === "w") {
-        add([
-          sprite("wall"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("wall"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
         ])
       } else if (char === "c") {
-        add([
-          sprite("cave"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("cave"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
           "cave",
         ])
       } else if (char === "T") {
-        add([
-          sprite("trunk"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("trunk"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
         ])
       } else if (char === "t") {
-        add([
-          sprite("tree"),
-          pos(x * TILESIZE, y * TILESIZE),
-          body({ isStatic: true }),
-          area(),
+        k.add([
+          k.sprite("tree"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.body({ isStatic: true }),
+          k.area(),
         ])
       } else if (char === "f") {
-        add([
-          sprite("flower"),
-          pos(x * TILESIZE, y * TILESIZE),
-          area(),
+        k.add([
+          k.sprite("flower"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.area(),
           "flower",
           "heal",
           {
@@ -114,10 +118,10 @@ export async function generateMapRPG(mapfile, player) {
           },
         ])
       } else if (char === "m") {
-        add([
-          sprite("mushroom"),
-          pos(x * TILESIZE, y * TILESIZE),
-          area(),
+        k.add([
+          k.sprite("mushroom"),
+          k.pos(x * TILESIZE, y * TILESIZE),
+          k.area(),
           "obstacle",
           {
             isConsumable: true,

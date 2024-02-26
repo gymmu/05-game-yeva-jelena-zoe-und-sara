@@ -1,13 +1,14 @@
 import { TILESIZE } from "./globals.js"
+import { k } from "./game.js"
 
 export default function createPlayer() {
-  const player = add([
-    sprite("hero", { anim: "idleRight", animSpeed: 1 }),
-    pos(0, 0),
-    body(),
-    area({}),
-    health(50),
-    stay(),
+  const player = k.add([
+    k.sprite("hero", { anim: "idleRight", animSpeed: 1 }),
+    k.pos(0, 0),
+    k.body(),
+    k.area({}),
+    k.health(50),
+    k.stay(),
     "player",
     {
       speed: TILESIZE * 5,
@@ -21,13 +22,13 @@ export default function createPlayer() {
     const anim = this.curAnim()
     if (anim != null) return
 
-    if (this.dir === RIGHT) {
+    if (this.dir === k.RIGHT) {
       this.play("runRight")
-    } else if (this.dir === LEFT) {
+    } else if (this.dir === k.LEFT) {
       this.play("runLeft")
-    } else if (this.dir === UP) {
+    } else if (this.dir === k.UP) {
       this.play("runUp")
-    } else if (this.dir === DOWN) {
+    } else if (this.dir === k.DOWN) {
       this.play("runDown")
     }
   }
@@ -38,8 +39,12 @@ export default function createPlayer() {
   }
 
   player.onUpdate(() => {
-    camPos(player.pos)
+    k.camPos(player.pos)
   })
 
   return player
+}
+
+export function getPlayer() {
+    return k.get("player")[0]
 }
