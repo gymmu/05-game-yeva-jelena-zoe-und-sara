@@ -1,7 +1,8 @@
-import { GAME } from "./globals.js"
+export default function gameLogic() {
 
-export default function gameLogic(player) {
-  createHPBar(50, 20)
+  const player = get("player")[0]
+
+  createHPBar()
 
   onUpdate(() => {
     if (player.dir != null) {
@@ -11,7 +12,7 @@ export default function gameLogic(player) {
     }
   })
 
-  player.onCollide("heal", (heal) => {
+  onCollide("heal", (heal) => {
     player.heal(5)
     heal.destroy()
   })
@@ -23,17 +24,10 @@ export default function gameLogic(player) {
     }
   })
 
-  player.on("hurt", () => {
-    const hp = get("interface-hp-current", { recursive: true })[0]
-    hp.width = player.hp()
-  })
-
   player.on("heal", () => {
-    const hp = get("interface-hp-current", { recursive: true })[0]
-    hp.width = player.hp()
     const oldSpeed = player.speed
-    player.speed *= 1.2
-    wait(2, () => {
+    player.speed *= 2
+    wait(1, () => {
       player.speed = oldSpeed
     })
   })
@@ -43,14 +37,16 @@ export default function gameLogic(player) {
   })
 }
 
-function createHPBar(x, y) {
+function createHPBar() {
   const player = get("player")[0]
   if (player == null) return
 
+    const x = 50
+    const y = 20
   const HP_BAR_WIDTH = 100
   const HP_BAR_HEIGHT = 10
 
-  const bar = add([pos(x, y), fixed(), z(10)])
+  const bar = add([pos(x, y), fixed(), z(10), "hp-bar"])
 
   bar.add([text("HP", { size: 20 }), anchor("right")])
 
@@ -58,16 +54,20 @@ function createHPBar(x, y) {
     rect(HP_BAR_WIDTH, HP_BAR_HEIGHT),
     outline(4, GREEN.darken(100)),
     color(0, 0, 0),
-    pos(20, 0),
     anchor("left"),
-    "interface-hp-max",
+        pos(10, 0)
   ])
 
   bar.add([
     rect((player.hp() / player.max_hp) * HP_BAR_WIDTH, HP_BAR_HEIGHT),
     color(0, 255, 0),
-    pos(20, 0),
     anchor("left"),
-    "interface-hp-current",
+        pos(10, 0),
+    {
+      update() {
+        const player = get("player")[0]
+        this.width = (player.hp() / player.max_hp) * HP_BAR_WIDTH
+      },
+    },
   ])
 }

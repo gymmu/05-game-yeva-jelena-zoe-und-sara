@@ -33,7 +33,7 @@ let player = null
  * anpassen, dass es für Sie stimmt. Am besten verwenden Sie hier ein
  * vielfaches von TILESIZE.
  */
-kaboom({
+const k = kaboom({
   font: "sinko",
   background: [0, 0, 0],
   debug: true,
@@ -60,7 +60,7 @@ loadSprites()
  *
  * Mit der Funktion `go("intro")` können wir zur Intro-Szene wechseln.
  */
-scene("intro", () => {
+k.scene("intro", () => {
   // Mit der `add`-Funktion können Objekte zu einer Szene hinzugefügt werden.
   // Wir geben dem Spielobjekt eine Liste von Funktionen an, die sagen wie
   // sich das Spielobjekt verhalten soll.
@@ -68,18 +68,18 @@ scene("intro", () => {
   // Position der Text sein soll. Mit `anchor` können wir angeben wie das
   // Objekt verankert werden soll. Versuchen Sie mal was passiert wenn Sie
   // `anchor("botright)` verwenden.
-  add([
-    text("Press SPACE to start", { size: 32 }),
-    pos(width() / 2, height() / 2),
-    anchor("center"),
+  k.add([
+    k.text("Press SPACE to start", { size: 32 }),
+    k.pos(k.width() / 2, k.height() / 2),
+    k.anchor("center"),
   ])
 
   // Mit dieser Funktion können wir auf Tastendrucke reagieren. Diese können
   // pro Szene anders angegeben werden. Hier wird mit `space` zur nächsten
   // Szene gewechselt. In der nächsten Szene können wir `space` dann auch zum
   // Springen verwenden.
-  onKeyPress("space", () => {
-    go("level-01")
+  k.onKeyPress("space", () => {
+    k.go("level-01")
   })
 })
 
@@ -87,40 +87,40 @@ scene("intro", () => {
  * Dies ist eine weitere Szene die angezeigt wird wenn das Spiel vorbei bzw.
  * gewonnen ist.
  */
-scene("finish", () => {
+k.scene("finish", () => {
   player.destroy()
-  add([
-    text("Ziel erreicht", { size: 32, font: "sinko" }),
-    pos(width() / 2, height() / 2),
-    anchor("center"),
+  k.add([
+    k.text("Ziel erreicht", { size: 32, font: "sinko" }),
+    k.pos(width() / 2, height() / 2),
+    k.anchor("center"),
   ])
 
-  onKeyPress("space", () => {
-    go("intro")
+  k.onKeyPress("space", () => {
+    k.go("intro")
   })
 })
 
 /* Diese Szene  wird verwendet wenn das Spiel verloren ist, also wenn der
  * Spieler gestorben ist.
  */
-scene("lose", () => {
+k.scene("lose", () => {
   player.destroy()
-  add([
-    text("Game over", { size: 44 }),
-    pos(width() / 2, height() / 2),
-    anchor("bot"),
+  k.add([
+    k.text("Game over", { size: 44 }),
+    k.pos(k.width() / 2, k.height() / 2),
+    k.anchor("bot"),
   ])
 
-  add([
-    text("Drücke SPACE um das Spiel neu zu starten", {
+  k.add([
+    k.text("Drücke SPACE um das Spiel neu zu starten", {
       size: 22,
     }),
-    pos(width() / 2, height() / 2 + 20),
-    anchor("top"),
+    k.pos(k.width() / 2, k.height() / 2 + 20),
+    k.anchor("center"),
   ])
 
-  onKeyPress("space", () => {
-    go("level-01")
+  k.onKeyPress("space", () => {
+    k.go("level-01")
   })
 })
 
@@ -137,10 +137,10 @@ scene("lose", () => {
  * wir einige spezialisierte Funktionen verwenden.
  *
  */
-scene("level-01", async () => {
+k.scene("level-01", async () => {
   // Wir stellen die Gravitation ein, damit es sich um ein Jump'n'Run-Spiel
   // handelt.
-  setGravity(1200)
+  k.setGravity(1200)
 
   // Wir erstellen den Spieler
   player = createPlayer()
@@ -161,8 +161,8 @@ scene("level-01", async () => {
   // verwendet wird.
   // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
   // kommen wir ins nächste Level.
-  player.onCollide("goal", () => {
-    go("level-02")
+  k.onCollide("player", "goal", () => {
+    k.go("level-02")
   })
 
   // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
@@ -170,32 +170,32 @@ scene("level-01", async () => {
   // Spiel verloren. Man könnte hier auch anders darauf reagieren, zum
   // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
   // Lebenspunkte von dem Spieler anpassen.
-  onUpdate(() => {
+  k.onUpdate(() => {
+    const player = k.get("player")[0]
     if (player.pos.y > 720) {
-      go("lose")
+      k.go("lose")
     }
   })
 })
 
-scene("level-02", async () => {
-  setGravity(0)
-  // const player = createPlayer()
+k.scene("level-02", async () => {
+  k.setGravity(0)
   loadKeyboardRPG(player)
 
   await generateMapRPG("maps/level-02.txt", player)
 
   addGeneralGameLogic(player)
 
-  player.onCollide("cave", () => {
+  k.onCollide("player", "cave", (player, _) => {
     if (player.hasFlower === true) {
-      go("finish")
+      k.go("finish")
     }
   })
 
-  player.onCollide("flower", (flower) => {
+  k.onCollide("player", "flower", (player, flower) => {
     flower.destroy()
     player.hasFlower = true
   })
 })
 
-go("intro")
+k.go("intro")

@@ -1,7 +1,7 @@
 {
-  "name": "04-game-project",
+  "name": "05-game-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Einstiegspunkt in ein Spielprojekt.",
   "type": "module",
   "scripts": {
     "dev": "vite",
