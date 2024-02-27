@@ -18,22 +18,6 @@ export default function createPlayer() {
     },
   ])
 
-  player.playAnimation = function () {
-    return
-    const anim = this.curAnim()
-    if (anim != null) return
-
-    if (this.dir === k.RIGHT) {
-      this.play("runRight")
-    } else if (this.dir === k.LEFT) {
-      this.play("runLeft")
-    } else if (this.dir === k.UP) {
-      this.play("runUp")
-    } else if (this.dir === k.DOWN) {
-      this.play("runDown")
-    }
-  }
-
   player.setPosition = function (x, y) {
     this.pos.x = x * TILESIZE
     this.pos.y = y * TILESIZE
@@ -42,8 +26,6 @@ export default function createPlayer() {
   player.onUpdate(() => {
     k.camPos(player.pos)
   })
-
-  return player
 }
 
 export function getPlayer() {

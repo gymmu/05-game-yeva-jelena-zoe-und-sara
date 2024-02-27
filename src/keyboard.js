@@ -4,20 +4,22 @@ import { getPlayer } from "./player.js"
 export function loadKeyboardJumpAndRun() {
   const player = getPlayer()
   k.onKeyPress("left", () => {
-    player.dir = k.LEFT
     player.play("runLeft")
   })
+  k.onKeyDown("left", () => {
+    player.move(k.LEFT.scale(player.speed))
+  })
   k.onKeyRelease("left", () => {
-    player.dir = null
     player.play("idleLeft")
   })
 
   k.onKeyPress("right", () => {
-    player.dir = k.RIGHT
     player.play("runRight")
   })
+  k.onKeyDown("right", () => {
+    player.move(k.RIGHT.scale(player.speed))
+  })
   k.onKeyRelease("right", () => {
-    player.dir = null
     player.play("idleRight")
   })
 
@@ -29,38 +31,42 @@ export function loadKeyboardJumpAndRun() {
 export function loadKeyboardRPG() {
   const player = getPlayer()
   k.onKeyPress("left", () => {
-    player.dir = k.LEFT
     player.play("runLeft")
   })
+  k.onKeyDown("left", () => {
+    player.move(k.LEFT.scale(player.speed))
+  })
   k.onKeyRelease("left", () => {
-    player.dir = null
     player.play("idleLeft")
   })
 
   k.onKeyPress("right", () => {
-    player.dir = k.RIGHT
     player.play("runRight")
   })
+  k.onKeyDown("right", () => {
+    player.move(k.RIGHT.scale(player.speed))
+  })
   k.onKeyRelease("right", () => {
-    player.dir = null
     player.play("idleRight")
   })
 
   k.onKeyPress("up", () => {
-    player.dir = k.UP
     player.play("runUp")
   })
+  k.onKeyDown("up", () => {
+    player.move(k.UP.scale(player.speed))
+  })
   k.onKeyRelease("up", () => {
-    player.dir = null
     player.play("idleUp")
   })
 
   k.onKeyPress("down", () => {
-    player.dir = k.DOWN
     player.play("runDown")
   })
+  k.onKeyDown("down", () => {
+    player.move(k.DOWN.scale(player.speed))
+  })
   k.onKeyRelease("down", () => {
-    player.dir = null
     player.play("idleDown")
   })
 }

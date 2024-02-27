@@ -49,14 +49,6 @@ export function addGeneralGameLogic() {
 
   createHPBar()
 
-  k.onUpdate(() => {
-    if (player.dir != null) {
-      player.move(player.dir.scale(player.speed))
-
-      player.playAnimation()
-    }
-  })
-
   k.onCollide("heal", (heal) => {
     player.heal(5)
     heal.destroy()

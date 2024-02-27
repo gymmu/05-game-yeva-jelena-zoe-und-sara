@@ -13,7 +13,7 @@ export async function generateMapJumpAndRun(mapfile) {
       const char = line[x]
 
       if (char === "p") {
-        player.setPosition(x, y)
+        player.pos = k.vec2(x, y).scale(TILESIZE)
       } else if (char === "-") {
         k.add([
           k.sprite("wall"),
@@ -69,7 +69,7 @@ export async function generateMapRPG(mapfile) {
       k.add([k.sprite("grass"), k.pos(x * TILESIZE, y * TILESIZE), k.z(-10)])
 
       if (char === "p") {
-        player.setPosition(x, y)
+        player.pos = k.vec2(x, y).scale(TILESIZE)
       } else if (char === "s") {
         k.add([
           k.sprite("stone"),
