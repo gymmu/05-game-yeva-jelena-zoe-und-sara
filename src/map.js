@@ -1,6 +1,6 @@
 import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
-import {getPlayer } from "./player.js"
+import { getPlayer } from "./player.js"
 
 export async function generateMapJumpAndRun(mapfile) {
   const player = getPlayer()

@@ -1,5 +1,5 @@
 import { k } from "./game.js"
-import {getPlayer} from "./player.js"
+import { getPlayer } from "./player.js"
 
 export function loadKeyboardJumpAndRun() {
   const player = getPlayer()

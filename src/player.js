@@ -19,6 +19,7 @@ export default function createPlayer() {
   ])
 
   player.playAnimation = function () {
+    return
     const anim = this.curAnim()
     if (anim != null) return
 
@@ -46,5 +47,5 @@ export default function createPlayer() {
 }
 
 export function getPlayer() {
-    return k.get("player")[0]
+  return k.get("player")[0]
 }

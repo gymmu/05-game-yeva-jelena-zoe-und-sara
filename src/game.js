@@ -18,8 +18,7 @@ import loadSprites from "./sprites.js"
  */
 import { TILESIZE } from "./globals.js"
 
-import {getPlayer} from "./player.js"
-
+import { getPlayer } from "./player.js"
 
 /*
  * Hier wird die GameEngine initialisiert. Wir können hier verschiedene Dinge
