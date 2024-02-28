@@ -47,8 +47,13 @@ loadSprites()
 export function addGeneralGameLogic() {
   const player = getPlayer()
 
+  // Erstelle das UI-Element HP-Balken
   createHPBar()
 
+  /* Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
+   * der Spieler um `healAmount` von dem Spielobjekt geheilt. Hat das
+   * Spielobjekt `isConsumable`, wird das Spielobjekt gelöscht.
+   */
   k.onCollide("heal", "player", (heal, player) => {
     player.heal(heal.healAmount)
     if (heal.isConsumable === true) {
@@ -56,6 +61,11 @@ export function addGeneralGameLogic() {
     }
   })
 
+  /*
+   * Wenn der Spieler mit einem Hindernis kollidiert, wird dem Spieler so viel
+   * Schaden zugefügt, wie das Hindernis `dmgAmount` hat. Hat das Hindernis
+   * `isConsumable`, wird das Hindernis gelöscht.
+   */
   k.onCollide("obstacle", "player", (obstacle, player) => {
     player.hurt(obstacle.dmgAmount)
     if (obstacle.isConsumable === true) {
@@ -63,6 +73,10 @@ export function addGeneralGameLogic() {
     }
   })
 
+  /* Wenn der Spieler geheilt wird, dann wird seine Geschwindigkeit für 1
+   * Sekunde verdoppelt. Danach wird die Geschwindigkeit wieder zurück
+   * gesetzt.
+   */
   player.on("heal", () => {
     const oldSpeed = player.speed
     player.speed *= 2
