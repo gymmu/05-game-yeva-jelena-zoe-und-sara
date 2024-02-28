@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "kaboom": "^3000.1.17",
+    "reveal.js": "^5.0.5",
     "vite": "^5.0.10"
   }
 }
