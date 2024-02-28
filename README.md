@@ -6,7 +6,7 @@ Game-Engine [kaboom.js](https://kaboomjs.com/) verwendet.
 
 ## Inhaltsverzeichnis
 
-[#installation](Installation)
+1. [Installation](#installation)
 
 ## Installation
 
