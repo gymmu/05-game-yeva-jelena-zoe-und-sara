@@ -110,7 +110,7 @@ daran weiter arbeiten.
 Ganz am Ende lassen Sie dann im Termin noch den folgenden Befehl ausführen:
 
 ```bash
-npm version major
+npm version minor
 ```
 
 ## Mergen
@@ -129,7 +129,7 @@ funktioniert hat, erstellen Sie eine neue Version in der Konsole, mit dem
 Befehl:
 
 ```bash
-npm version minor
+npm version patch
 ```
 
 Dann können Sie den `main` Branch pushen, und Ihren lokalen Branch löschen.
