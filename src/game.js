@@ -49,13 +49,15 @@ export function addGeneralGameLogic() {
 
   createHPBar()
 
-  k.onCollide("heal", (heal) => {
-    player.heal(5)
-    heal.destroy()
+  k.onCollide("heal", "player", (heal, player) => {
+    player.heal(heal.healAmount)
+    if (heal.isConsumable === true) {
+      heal.destroy()
+    }
   })
 
-  player.onCollide("obstacle", (obstacle) => {
-    player.hurt(100)
+  k.onCollide("obstacle", "player", (obstacle, player) => {
+    player.hurt(obstacle.dmgAmount)
     if (obstacle.isConsumable === true) {
       obstacle.destroy()
     }

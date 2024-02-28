@@ -51,8 +51,11 @@ export async function generateMapJumpAndRun(mapfile) {
   }
 }
 
+/* Liest das gewünschte Level ein, und erstellt die entsprechende Karte.
+ *
+ * Siehe bei der Funktion generateMapJumpAndRun für mehr Dokumentation.
+ */
 export async function generateMapRPG(mapfile) {
-  const player = getPlayer()
   const map = await fetch(mapfile)
   const mapContent = await map.text()
   const lines = mapContent.split("\n")
@@ -60,67 +63,28 @@ export async function generateMapRPG(mapfile) {
     const line = lines[y]
     for (let x = 0; x < line.length; x++) {
       const char = line[x]
-      k.add([k.sprite("grass"), k.pos(x * TILESIZE, y * TILESIZE), k.z(-10)])
+
+      // Das wird bei jeder Kachel hinzugefügt, damit alles einen Hintergrund
+      // hat.
+      GameObjects.backgroundRPG(x, y)
 
       if (char === "p") {
+        const player = getPlayer()
         player.pos = k.vec2(x, y).scale(TILESIZE)
       } else if (char === "s") {
-        k.add([
-          k.sprite("stone"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-        ])
+        GameObjects.stoneRPG(x, y)
       } else if (char === "w") {
-        k.add([
-          k.sprite("wall"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-        ])
+        GameObjects.wallRPG(x, y)
       } else if (char === "c") {
-        k.add([
-          k.sprite("cave"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-          "cave",
-        ])
+        GameObjects.caveRPG(x, y)
       } else if (char === "T") {
-        k.add([
-          k.sprite("trunk"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-        ])
+        GameObjects.trunkRPG(x, y)
       } else if (char === "t") {
-        k.add([
-          k.sprite("tree"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-        ])
+        GameObjects.treeRPG(x, y)
       } else if (char === "f") {
-        k.add([
-          k.sprite("flower"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.area(),
-          "flower",
-          "heal",
-          {
-            isConsumable: true,
-          },
-        ])
+        GameObjects.flowerRPG(x, y)
       } else if (char === "m") {
-        k.add([
-          k.sprite("mushroom"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.area(),
-          "obstacle",
-          {
-            isConsumable: true,
-          },
-        ])
+        GameObjects.mushroomRPG(x, y)
       }
     }
   }
