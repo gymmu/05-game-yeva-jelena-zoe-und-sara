@@ -10,6 +10,7 @@ Game-Engine [kaboom.js](https://kaboomjs.com/) verwendet.
 2. [Veröffentlichen](#veröffentlichen)
 3. [Arbeitsweise](#arbeitsweise)
 4. [Mergen](#mergen)
+5. [Resourcen](#resourcen)
 
 ## Installation
 
@@ -112,7 +113,7 @@ Ganz am Ende lassen Sie dann im Termin noch den folgenden Befehl ausführen:
 npm version major
 ```
 
-# Mergen
+## Mergen
 
 Hier wird kurz beschrieben wie Sie bei einem Merge vorgehen. Öffnen Sie die
 Datei [backlog.md](backlog.md) und setzen Sie ein `x` bei Ihrer Aufgabe. Dann
@@ -132,3 +133,16 @@ npm version minor
 ```
 
 Dann können Sie den `main` Branch pushen, und Ihren lokalen Branch löschen.
+
+## Resourcen
+
+Das Projekt ist ausführlich dokumentiert und sollte eine gute Anleitung bieten,
+zusätzlich können Sie natürlich das Internet oder auch `Codeium` verwenden.
+Eine hervorragende Quelle ist die Dokumentation von
+[Kaboom.js](https://kaboomjs.com/). Oder aber auch der
+[Playground von Kaboom.js](https://kaboomjs.com/play?example=add).
+
+Wichtige Programme für die Bildbearbeitung sind
+[Libresprite](https://libresprite.github.io/#!/) oder
+[Gimp](https://www.gimp.org/). Sie können natürlich auch andere Software
+benutzen die Sie bereits kennen.
