@@ -4,6 +4,10 @@ Dieses Repository bildet die Grundlage für ein Spielprojekt, das von Gruppen mi
 jeweils vier Mitgliedern bearbeitet wird. Für die Umsetzung des Spiels wird die
 Game-Engine [kaboom.js](https://kaboomjs.com/) verwendet.
 
+## Inhaltsverzeichnis
+
+[#installation](Installation)
+
 ## Installation
 
 Damit wir [kaboom.js](https://kaboomjs.com/) und alle weiteren benötigten Dinge
@@ -98,3 +102,7 @@ Dinge die noch erledigt werden müssen...
 Schreiben Sie hier auf was Sie beim nächsten mal wieder wissen müssen, wenn Sie
 daran weiter arbeiten.
 ```
+
+Ändern Sie ganz am Ende noch die Version in `package.json` auf `x.0.0`, so das
+`x` immer eins grösser ist als beim letzten mal. Fügen Sie dann auch ein `tag`
+im Gitgraph ein, mit `vx.0.0`.
