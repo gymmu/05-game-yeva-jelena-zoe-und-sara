@@ -1,6 +1,7 @@
 # Backlog
 
 - [ ] README.md erstellen
+- [ ] Autor anpassen in `package.json`
 - [ ] Dokumentation vollständig durchlesen
 - [ ] Name des Spiels ändern
 - [ ] Spielidee auf der Webseite beschreiben (kann später noch erweitert werden)
