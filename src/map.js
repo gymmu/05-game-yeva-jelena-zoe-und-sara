@@ -1,57 +1,51 @@
 import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
-
+import * as GameObjects from "./gameObjects.js"
+/* Diese Funktion liest eine txt-Datei ein, und erstellt aufgrund der Struktur
+ * eine Karte für das Spiel. Jedes Zeichen in der txt-Datei entspricht einer
+ * Kachel im Spiel, wenn in der txt-Datei kein Buchstabe ist, dann wird die
+ * Stelle einfach frei gelassen.
+ *
+ * Die verschiedenen Buchstaben entsprechen der Art der Kachel die erzeugt
+ * werden soll. Wie die folgenden Beispiele.
+ *  - p: Player
+ *  - o: Hindernis
+ *  - f: Blume
+ */
 export async function generateMapJumpAndRun(mapfile) {
-  const player = getPlayer()
+  // Lädt die txt-Datei die gefragt wurde, für das entsprechende Level.
   const map = await fetch(mapfile)
+
+  // Liest den Textinhalt der txt-Datei ein.
   const mapContent = await map.text()
+
+  // Spaltet den Text in die einzelnen Zeilen. Die Zeilennummer entspricht dann
+  // gleich der y-Koordinate in der Spielkarte
   const lines = mapContent.split("\n")
+
+  // Geht über jede einzelne Zeile drüber. Die Zeilennummer entspricht der
+  // y-Koordinate auf der Spielkarte
   for (let y = 0; y < lines.length; y++) {
     const line = lines[y]
+    // Geht alle Zeichen in einer Zeile durch. Die Stelle des Zeichens
+    // entspricht dann der x-Koordinate im Spiel.
     for (let x = 0; x < line.length; x++) {
       const char = line[x]
 
+      // Wenn wir ein 'p' lesen, dann möchten wir an der Stelle den Spieler
+      // platzieren.
       if (char === "p") {
+        const player = getPlayer()
         player.pos = k.vec2(x, y).scale(TILESIZE)
       } else if (char === "-") {
-        k.add([
-          k.sprite("wall"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-          "ground",
-        ])
+        GameObjects.wallJumpAndRun(x, y)
       } else if (char === "o") {
-        k.add([
-          k.sprite("mushroom"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-          "obstacle",
-          {
-            isConsumable: true,
-          },
-        ])
+        GameObjects.mushroomJumpAndRun(x, y)
       } else if (char === "f") {
-        k.add([
-          k.sprite("flower"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-          "heal",
-          {
-            isConsumable: true,
-          },
-        ])
+        GameObjects.flowerJumpAndRun(x, y)
       } else if (char === "g") {
-        k.add([
-          k.sprite("cave"),
-          k.pos(x * TILESIZE, y * TILESIZE),
-          k.body({ isStatic: true }),
-          k.area(),
-          "goal",
-        ])
+        GameObjects.goalJumpAndRun(x, y)
       }
     }
   }
