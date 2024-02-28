@@ -7,6 +7,9 @@ Game-Engine [kaboom.js](https://kaboomjs.com/) verwendet.
 ## Inhaltsverzeichnis
 
 1. [Installation](#installation)
+2. [Veröffentlichen](#veröffentlichen)
+3. [Arbeitsweise](#arbeitsweise)
+4. [Mergen](#mergen)
 
 ## Installation
 
@@ -106,3 +109,22 @@ daran weiter arbeiten.
 Ändern Sie ganz am Ende noch die Version in `package.json` auf `x.0.0`, so das
 `x` immer eins grösser ist als beim letzten mal. Fügen Sie dann auch ein `tag`
 im Gitgraph ein, mit `vx.0.0`.
+
+# Mergen
+
+Hier wird kurz beschrieben wie Sie bei einem Merge vorgehen. Zuerst müssen Sie
+das Repository aktualisieren, falls der `main` Branch bereits weiter ist. Dann
+müssen Sie kurz schauen welche Version im `package.json` gerade auf dem `main`
+Branch ist, und diese an der zweiten Stelle um eins erhöhen. Hacken Sie auch
+Ihre Aufgabe im Backlog ab.
+
+Dann können Sie einen letzten commit auf Ihrem branch machen, und diesen dann
+in den `main` Branch mergen.
+
+Wenn Konflikte auftreten, sollten dies immer nur Konflikte sein, die am selben
+Tag erzeugt wurden. Sitzen Sie mit der Person zusammen, die bereits die
+Änderungen gemacht hat, so dass Sie sicher alles richtig mergen können.
+
+Testen Sie die Änderungen nach einem Merge unbedingt aus. Wenn alles
+funktioniert hat, dann können Sie den `main` Branch pushen, und Ihren lokalen
+Branch löschen.
