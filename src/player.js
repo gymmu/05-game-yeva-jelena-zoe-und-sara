@@ -1,7 +1,8 @@
 import { TILESIZE } from "./globals.js"
 import { k } from "./game.js"
 
-/* Erstelle das Spielobjekt Spieler.
+/**
+ * Erstelle das Spielobjekt Spieler.
  * Hier werden die Eigenschaften des Spielers festgelegt. Der Spieler wird dann
  * im Level 1 erstellt, und in späteren Levels wieder geladen.
  *
@@ -47,7 +48,9 @@ export default function createPlayer() {
   })
 }
 
-/* Hilfsfunktion um das Spielobjekt von `player` einfach zu bekommen. */
+/**
+ *  Hilfsfunktion um das Spielobjekt von `player` einfach zu bekommen.
+ */
 export function getPlayer() {
   return k.get("player")[0]
 }

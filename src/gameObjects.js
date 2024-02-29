@@ -1,7 +1,7 @@
 import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
 
-/*
+/**
  * Ein Spielobjekt das sich nicht bewegen lässt und der Spieler nicht
  * hindurch laufen kann. Kann verwendet werden um mit dem Spieler darüber zu
  * laufen, oder auch um ihn zu blockieren.
@@ -38,7 +38,8 @@ export function wallJumpAndRun(x, y) {
   ])
 }
 
-/* Ein Pilz Spielobjekt, das dem Spieler schaden zufügt.
+/**
+ * Ein Pilz Spielobjekt, das dem Spieler schaden zufügt.
  */
 export function mushroomJumpAndRun(x, y) {
   k.add([
@@ -58,7 +59,8 @@ export function mushroomJumpAndRun(x, y) {
   ])
 }
 
-/* Ein Spielobjekt Blume, das den Spieler heilt.
+/**
+ * Ein Spielobjekt Blume, das den Spieler heilt.
  */
 export function flowerJumpAndRun(x, y) {
   k.add([
@@ -74,7 +76,8 @@ export function flowerJumpAndRun(x, y) {
   ])
 }
 
-/* Ein Spielobjekt Ziel, das vom Spieler erreicht werden muss.
+/**
+ * Ein Spielobjekt Ziel, das vom Spieler erreicht werden muss.
  */
 export function goalJumpAndRun(x, y) {
   k.add([
@@ -86,7 +89,8 @@ export function goalJumpAndRun(x, y) {
   ])
 }
 
-/* Ein Hintergrund Spielobjekt, das auf leeren Feldern oder als Hintergrund von
+/**
+ * Ein Hintergrund Spielobjekt, das auf leeren Feldern oder als Hintergrund von
  * anderen Objekten gesetzt wird.
  */
 export function backgroundRPG(x, y) {
@@ -100,7 +104,8 @@ export function backgroundRPG(x, y) {
   ])
 }
 
-/* Spielobjekt Stein.
+/**
+ *  Spielobjekt Stein.
  *
  * Soll den Spieler blockieren.
  */
@@ -113,7 +118,7 @@ export function stoneRPG(x, y) {
   ])
 }
 
-/*
+/**
  * Spielobjekt Wand.
  *
  * Der Spieler kann hier nicht durchlaufen. Kann als Klippe verwendet werden.
@@ -127,7 +132,8 @@ export function wallRPG(x, y) {
   ])
 }
 
-/* Ein Spielobjekt Höhle. Kann verwendet werden um ein neues Level zu betreten.
+/**
+ *  Ein Spielobjekt Höhle. Kann verwendet werden um ein neues Level zu betreten.
  */
 export function caveRPG(x, y) {
   k.add([
@@ -139,7 +145,8 @@ export function caveRPG(x, y) {
   ])
 }
 
-/* Ein Baumstumpf als Spielobjekt. Wird als Hindernis für den Spieler
+/*
+ * Ein Baumstumpf als Spielobjekt. Wird als Hindernis für den Spieler
  * verwendet.
  */
 export function trunkRPG(x, y) {
@@ -151,7 +158,8 @@ export function trunkRPG(x, y) {
   ])
 }
 
-/* Ein Spielobjekt Baum. Wird als Hindernis für den Spieler verwendet.
+/**
+ * Ein Spielobjekt Baum. Wird als Hindernis für den Spieler verwendet.
  */
 export function treeRPG(x, y) {
   k.add([
@@ -162,7 +170,8 @@ export function treeRPG(x, y) {
   ])
 }
 
-/* Ein Spielobjekt Blume, das den Spieler heilt.
+/**
+ * Ein Spielobjekt Blume, das den Spieler heilt.
  */
 export function flowerRPG(x, y) {
   k.add([
@@ -177,7 +186,8 @@ export function flowerRPG(x, y) {
   ])
 }
 
-/* Ein Spielobjekt Pilz, das dem Spieler schadet.
+/**
+ * Ein Spielobjekt Pilz, das dem Spieler schadet.
  */
 export function mushroomRPG(x, y) {
   k.add([

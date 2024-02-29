@@ -1,7 +1,7 @@
 import { k } from "../game.js"
 import "./level-01.js"
 
-/*
+/**
  * Die Funktion `scene` kommt von Kaboom, und erstellt uns einen
  * abgeschlossenen Teil von unserem Spiel. Wir können das auch wie ein Level in
  * unserem Spiel betrachten. Es können aber auch Menu-Bildschirme und

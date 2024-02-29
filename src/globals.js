@@ -1,4 +1,5 @@
-/* Hier werden verschiedene Variablen festgeschrieben die im ganzen Code immer
+/**
+ * Hier werden verschiedene Variablen festgeschrieben die im ganzen Code immer
  * gleich verwendet werden sollen. Diese Variablen sind Konstant, werden
  * also nur am Anfang des Spiels gesetzt.
  *

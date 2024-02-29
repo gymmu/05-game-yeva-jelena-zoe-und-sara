@@ -2,6 +2,7 @@ import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
 import * as GameObjects from "./gameObjects.js"
+
 /**
  *  Diese Funktion liest eine txt-Datei ein, und erstellt aufgrund der Struktur
  * eine Karte für das Spiel. Jedes Zeichen in der txt-Datei entspricht einer

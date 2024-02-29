@@ -2,7 +2,8 @@ import { k } from "../game.js"
 
 import "./level-01.js"
 
-/* Diese Szene  wird verwendet wenn das Spiel verloren ist, also wenn der
+/**
+ * Diese Szene  wird verwendet wenn das Spiel verloren ist, also wenn der
  * Spieler gestorben ist.
  */
 k.scene("lose", () => {

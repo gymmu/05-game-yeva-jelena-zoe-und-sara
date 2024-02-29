@@ -1,7 +1,7 @@
 import { k } from "./game.js"
 import { getPlayer } from "./player.js"
 
-/*
+/**
  * Diese Funktion lädt die Tastenbelegung wie sie pro Level sein soll. Die
  * generelle Steuerung für ein Jump'n'Run-Level ist immer etwa gleich, deshalb
  * laden wir sie hier in einer eigenen Funktion.
@@ -13,7 +13,7 @@ export function loadKeyboardJumpAndRun() {
     player.play("runLeft")
   })
   // Solange wie die Taste gedrückt wird, wird der Spieler in jedem Frame nach
-    // links verschoben.
+  // links verschoben.
   k.onKeyDown("left", () => {
     player.move(k.LEFT.scale(player.speed))
   })
@@ -37,7 +37,7 @@ export function loadKeyboardJumpAndRun() {
   })
 }
 
-/*
+/**
  * Diese Funktion lädt die Tastenbelegung wie sie pro Level sein soll. Die
  * generelle Steuerung für ein RPG-Level ist immer etwa gleich, deshalb
  * laden wir sie hier in einer eigenen Funktion.
