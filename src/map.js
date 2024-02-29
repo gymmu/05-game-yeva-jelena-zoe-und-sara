@@ -2,7 +2,8 @@ import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
 import * as GameObjects from "./gameObjects.js"
-/* Diese Funktion liest eine txt-Datei ein, und erstellt aufgrund der Struktur
+/**
+ *  Diese Funktion liest eine txt-Datei ein, und erstellt aufgrund der Struktur
  * eine Karte für das Spiel. Jedes Zeichen in der txt-Datei entspricht einer
  * Kachel im Spiel, wenn in der txt-Datei kein Buchstabe ist, dann wird die
  * Stelle einfach frei gelassen.
@@ -51,7 +52,8 @@ export async function generateMapJumpAndRun(mapfile) {
   }
 }
 
-/* Liest das gewünschte Level ein, und erstellt die entsprechende Karte.
+/**
+ * Liest das gewünschte Level ein, und erstellt die entsprechende Karte.
  *
  * Siehe bei der Funktion generateMapJumpAndRun für mehr Dokumentation.
  */

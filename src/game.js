@@ -1,6 +1,7 @@
 import kaboom from "kaboom"
 
-/* Hier werden Funktionen aus den eigenen Datein eingebunden.
+/**
+ *  Hier werden Funktionen aus den eigenen Datein eingebunden.
  * Die Dateien liegen jeweils im `src` Verzeichnis. Funktionen die in anderen
  * Dateien definiert werden, und hier verwendet werden, müssen das
  * Schlüsselwort `export` haben. Werden mehrere Funktionen exportiert, braucht
@@ -10,7 +11,8 @@ import kaboom from "kaboom"
  */
 import loadSprites from "./sprites.js"
 
-/* Wir können auch einzelne Variablen importieren.
+/**
+ * Wir können auch einzelne Variablen importieren.
  * Das können wir verwenden um globale Konstanten zu definieren, die wir
  * dann in verschiedenen Datein brauchen können. Das eignet sich vor allem
  * für Dinge wie TILESIZE oder FPS. Diese möchten wir an einem Ort
@@ -20,7 +22,7 @@ import { TILESIZE } from "./globals.js"
 
 import { getPlayer } from "./player.js"
 
-/*
+/**
  * Hier wird die GameEngine initialisiert. Wir können hier verschiedene Dinge
  * anpassen. Wichtig ist das wir kaboom sagen wo unser Spiel gezeichnet werden
  * soll, dafür geben wir das HTML-Canvas-Element an.
@@ -37,20 +39,28 @@ export const k = kaboom({
   canvas: document.getElementById("game-canvas"),
 })
 
-/*
+/**
  * Diese Funktion ladet die Graphiken und Animationen die wir später im Spiel
  * verwenden möchten. Wir müssen diese Funktion noch vor allen anderen
  * aufrufen, damit die Graphiken auch verfügbar sind.
  */
 loadSprites()
 
+/**
+ * Diese Funktion erstellt die generelle Spiellogik die in allen Levels gilt.
+ *
+ * Die Funktion kann auch abgeändert werden, wenn nicht all diese Dinge in allen
+ * Leveln gelten sollen. Wenn Logik aber in mehreren Levels verwendet wird, sollte
+ * diese hier implementiert werden. Damit Änderungen nur an einer Stelle gemacht
+ * werden müssen.
+ */
 export function addGeneralGameLogic() {
   const player = getPlayer()
 
   // Erstelle das UI-Element HP-Balken
   createHPBar()
 
-  /* Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
+  /** Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
    * der Spieler um `healAmount` von dem Spielobjekt geheilt. Hat das
    * Spielobjekt `isConsumable`, wird das Spielobjekt gelöscht.
    */
@@ -61,7 +71,7 @@ export function addGeneralGameLogic() {
     }
   })
 
-  /*
+  /**
    * Wenn der Spieler mit einem Hindernis kollidiert, wird dem Spieler so viel
    * Schaden zugefügt, wie das Hindernis `dmgAmount` hat. Hat das Hindernis
    * `isConsumable`, wird das Hindernis gelöscht.
@@ -73,7 +83,7 @@ export function addGeneralGameLogic() {
     }
   })
 
-  /* Wenn der Spieler geheilt wird, dann wird seine Geschwindigkeit für 1
+  /** Wenn der Spieler geheilt wird, dann wird seine Geschwindigkeit für 1
    * Sekunde verdoppelt. Danach wird die Geschwindigkeit wieder zurück
    * gesetzt.
    */
@@ -91,6 +101,9 @@ export function addGeneralGameLogic() {
   })
 }
 
+/**
+ * Erstelle das UI-Element HP-Balken.
+ */
 function createHPBar() {
   const player = getPlayer()
   if (player == null) return
@@ -100,6 +113,7 @@ function createHPBar() {
   const HP_BAR_WIDTH = 100
   const HP_BAR_HEIGHT = 10
 
+  // Dies ist das UI-Element das den Rest der dazu gehört einpackt.
   const bar = k.add([k.pos(x, y), k.fixed(), k.z(10), "hp-bar"])
 
   bar.add([k.text("HP", { size: 20 }), k.anchor("right")])
@@ -112,12 +126,14 @@ function createHPBar() {
     k.pos(10, 0),
   ])
 
+  // Dieser Teil zeigt den grünenden Balken an.
   bar.add([
     k.rect((player.hp() / player.max_hp) * HP_BAR_WIDTH, HP_BAR_HEIGHT),
     k.color(0, 255, 0),
     k.anchor("left"),
     k.pos(10, 0),
     {
+      // Damit wird in jedem Frame überprüft ob der HP-Balken angepasst werden muss.
       update() {
         const player = getPlayer()
         this.width = (player.hp() / player.max_hp) * HP_BAR_WIDTH
