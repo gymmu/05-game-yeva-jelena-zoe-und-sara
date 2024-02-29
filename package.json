@@ -1,6 +1,6 @@
 {
   "name": "05-game-project",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Einstiegspunkt in ein Spielprojekt.",
   "type": "module",
   "scripts": {
