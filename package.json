@@ -10,7 +10,8 @@
     "format": "prettier --write src/"
   },
   "keywords": [],
-  "author": "Cedric Geissmann",
+  "author": "Cedric Geissmann <cedric.geissmann@sbl.ch>",
+  "contributors": [],
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.57.0",
