@@ -30,7 +30,7 @@ können.
 
 Das Spiel ist direkt über Github-Pages verfügbar. Das müssen Sie in den
 Einstellungen des Repositories aktivieren, und zwar müssen Sie dort auf
-Github-Actions umstellen, der Rest passiert dann automatisch. Eine neue VErsion
+Github-Actions umstellen, der Rest passiert dann automatisch. Eine neue Version
 der Webseite wird immer dann erstellt, wenn ein neuer `commit` auf dem `main`
 Branch gemacht wird, bzw. wenn ein `merge` in den `main` Branch gemacht wird.
 
@@ -90,8 +90,8 @@ zur gleichen Zeit!
 
 Sind alle Branches gemerged, erstellen Sie eine neue Version mit den
 Veränderungen die Sie gemacht haben. Erstellen Sie auch dafür einen neuen
-Branch und beschreiben Sie die Änderungen, die Sie am Spiel gemacht haben, auf
-der Webseite in [changes.html](changes.html). Passen Sie die Datei
+Branch und beschreiben Sie die Änderungen, die Sie am Spiel gemacht haben, in
+der Datei [changes.md](changes.md). Passen Sie die Datei
 [backlog.md](backlog.md) an, so das erledigte Dinge abgehackt sind, und fügen
 Sie neue Aufgaben zum Backlog hinzu.
 
