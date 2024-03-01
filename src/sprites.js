@@ -13,6 +13,7 @@ import { k } from "./game.js"
 export default function loadSprites() {
   k.loadSpriteAtlas("sprites/char.png", {
     hero: {
+      //Schau bei sprites, char.png
       // Alles war hier kommt, gehört zum Sprite `hero`
       x: 0, // x-Koordinate des Pixels wo das Sprite beginnt.
       y: 0, // y-Koordinate des Pixels wo das Sprite beginnt.
@@ -46,5 +47,9 @@ export default function loadSprites() {
     tree: { x: 1 * TS, y: 1 * TS, width: TS, height: TS },
     cave: { x: 2 * TS, y: 1 * TS, width: TS, height: TS },
     wall: { x: 3 * TS, y: 1 * TS, width: TS, height: TS },
+  })
+
+  k.loadSpriteAtlas("sprites/background.jpeg", {
+    background: { x: 0, y: 0, width: 1000, height: 240 },
   })
 }

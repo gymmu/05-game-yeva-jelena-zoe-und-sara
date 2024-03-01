@@ -27,6 +27,8 @@ k.scene("level-01", async () => {
   // Wir erstellen den Spieler
   createPlayer()
 
+  k.add([k.sprite("background"), k.pos(0, 0), k.z(-100), k.fixed()])
+
   // Wir laden die Tasenbelegung für ein Jump'n'Run-Spiel.
   loadKeyboardJumpAndRun()
 
