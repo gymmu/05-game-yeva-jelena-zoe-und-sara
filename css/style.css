@@ -34,6 +34,21 @@ main > section:nth-child(2n-1) {
   background-color: rgba(27, 127, 71, 0.973);
 }
 
+.container-liane {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.container-liane > img {
+  width: 100%;
+}
+
 main > section > h2 {
   text-align: center;
 }
