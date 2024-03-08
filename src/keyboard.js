@@ -49,42 +49,27 @@ export function loadKeyboardJumpAndRun() {
 export function loadKeyboardRPG() {
   const player = getPlayer()
   k.onKeyPress("left", () => {
-    player.play("runLeft")
+    player.play("left")
   })
   k.onKeyDown("left", () => {
     player.move(k.LEFT.scale(player.speed))
   })
-  k.onKeyRelease("left", () => {
-    player.play("idleLeft")
-  })
-
   k.onKeyPress("right", () => {
-    player.play("runRight")
+    player.play("right")
   })
   k.onKeyDown("right", () => {
     player.move(k.RIGHT.scale(player.speed))
   })
-  k.onKeyRelease("right", () => {
-    player.play("idleRight")
-  })
-
   k.onKeyPress("up", () => {
-    player.play("runUp")
+    player.play("up")
   })
   k.onKeyDown("up", () => {
     player.move(k.UP.scale(player.speed))
   })
-  k.onKeyRelease("up", () => {
-    player.play("idleUp")
-  })
-
   k.onKeyPress("down", () => {
-    player.play("runDown")
+    player.play("up")
   })
   k.onKeyDown("down", () => {
     player.move(k.DOWN.scale(player.speed))
-  })
-  k.onKeyRelease("down", () => {
-    player.play("idleDown")
   })
 }
