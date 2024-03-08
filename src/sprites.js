@@ -70,6 +70,6 @@ export default function loadSprites() {
   })
 
   k.loadSpriteAtlas("sprites/background.jpeg", {
-    background: { x: 0, y: 0, width: 1000, height: 240 },
+    background: { x: 0, y: 0, width: 680, height: 383 },
   })
 }
