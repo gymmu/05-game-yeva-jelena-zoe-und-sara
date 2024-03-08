@@ -34,6 +34,26 @@ export default function loadSprites() {
     },
   })
 
+  k.loadSpriteAtlas("sprites/mushroom-char.png", {
+    mushroomhero: {
+      // Alles war hier kommt, gehört zum Sprite `hero`
+      x: 0, // x-Koordinate des Pixels wo das Sprite beginnt.
+      y: 0, // y-Koordinate des Pixels wo das Sprite beginnt.
+      width: 2 * TS, // Die Breite des Sprites in Pixeln. Hier sind jeweils 3 Animationen nebeneinander, deshalb 3 * TILESIZE
+      height: 2 * TS, // Die Höhe des Sprites in Pixeln. Hier sind die 4 Laufrichtungen untereinander, deshalb 4 * TILESIZE
+      sliceX: 2, // In der x-Richtung sind es 3 Kacheln, so wird es gleichmässig aufgeteilt.
+      sliceY: 2, // In der y-Richtung sind es 4 Kacheln, so wird es gleichmässig aufgeteilt.
+      anims: {
+        // Hier werden die verschiedenen Animationen definiert.
+
+        down: 0, // Ist es nur eine Kachel, kann diese direkt angegeben werden.
+        left: 2,
+        right: 3,
+        up: 1,
+      },
+    },
+  })
+
   /**
    * Hier werden alle sprites für die statischen Spielobjekte geladen.
    */

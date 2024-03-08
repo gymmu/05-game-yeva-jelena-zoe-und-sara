@@ -11,7 +11,7 @@ import { k } from "./game.js"
  */
 export default function createPlayer() {
   const player = k.add([
-    k.sprite("hero", { anim: "idleRight" }),
+    k.sprite("mushroomhero", { anim: "down" }),
     k.pos(0, 0),
     k.body(),
     k.area(),
