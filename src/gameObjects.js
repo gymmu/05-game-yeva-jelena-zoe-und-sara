@@ -182,6 +182,7 @@ export function flowerRPG(x, y) {
     "heal",
     {
       isConsumable: true,
+      healAmount: 10,
     },
   ])
 }
@@ -195,6 +196,7 @@ export function mushroomRPG(x, y) {
     k.pos(x * TILESIZE, y * TILESIZE),
     k.area(),
     "obstacle",
+    "key",
     {
       isConsumable: true,
     },
