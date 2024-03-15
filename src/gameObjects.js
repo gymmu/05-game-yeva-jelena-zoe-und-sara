@@ -200,3 +200,16 @@ export function mushroomRPG(x, y) {
     },
   ])
 }
+
+export function fireballRPG(x, y) {
+  k.add([
+    k.sprite("fireball"),
+    k.pos(x * TILESIZE, y * TILESIZE),
+    k.area(),
+    "obstacle",
+    {
+      isConsumable: true,
+      dmgAmount: 30,
+    },
+  ])
+}
