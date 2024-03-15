@@ -1,7 +1,7 @@
 import kaboom from "kaboom"
 import { TILESIZE } from "./globals.js"
 
-export const k = kaboom({
+const k = kaboom({
   font: "sinko",
   background: [0, 0, 0],
   debug: true,
@@ -34,9 +34,15 @@ k.loadSpriteAtlas("sprites/char.png", {
 })
 
 const player = k.add([
-  k.sprite("hero", { anim: "runRight" }),
+  k.sprite("hero", { anim: "idleRight" }),
   k.pos(0, 0),
   k.body(),
   k.area(),
-  k.move(k.RIGHT, 300),
 ])
+
+k.onKeyPress("space", () => {
+  player.play("runRight")
+  setInterval(() => {
+    player.move(k.RIGHT.scale(100))
+  }, 1000 / 60)
+})

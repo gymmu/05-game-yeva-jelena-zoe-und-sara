@@ -34,10 +34,3 @@ k.scene("intro", () => {
     k.go("level-01")
   })
 })
-
-// make a game canvas
-
-import { k, addGeneralGameLogic } from "../game.js"
-import createPlayer from "../player.js"
-//create a game cenvas with a width and hight and sprite char.png
-k.createCanvas(k.width(), k.height(), "sprites/char.png")
