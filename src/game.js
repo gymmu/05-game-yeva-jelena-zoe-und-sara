@@ -87,13 +87,7 @@ export function addGeneralGameLogic() {
    * Sekunde verdoppelt. Danach wird die Geschwindigkeit wieder zurück
    * gesetzt.
    */
-  player.on("heal", () => {
-    const oldSpeed = player.speed
-    player.speed *= 2
-    k.wait(1, () => {
-      player.speed = oldSpeed
-    })
-  })
+  player.on("heal", () => {})
 
   player.on("death", async () => {
     await import("./scenes/lose.js")

@@ -54,22 +54,37 @@ export function loadKeyboardRPG() {
   k.onKeyDown("left", () => {
     player.move(k.LEFT.scale(player.speed))
   })
+  k.onKeyRelease("left", () => {
+    player.play("down")
+  })
+
   k.onKeyPress("right", () => {
     player.play("right")
   })
   k.onKeyDown("right", () => {
     player.move(k.RIGHT.scale(player.speed))
   })
+  k.onKeyRelease("right", () => {
+    player.play("down")
+  })
+
   k.onKeyPress("up", () => {
     player.play("up")
   })
   k.onKeyDown("up", () => {
     player.move(k.UP.scale(player.speed))
   })
+  k.onKeyRelease("up", () => {
+    player.play("down")
+  })
+
   k.onKeyPress("down", () => {
-    player.play("up")
+    player.play("down")
   })
   k.onKeyDown("down", () => {
     player.move(k.DOWN.scale(player.speed))
+  })
+  k.onKeyRelease("down", () => {
+    player.play("down")
   })
 }
