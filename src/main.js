@@ -6,7 +6,8 @@ import { k } from "./game.js"
 
 // Wenn wir eine neue Scene laden möchten, müssen wir diese zuerst importieren.
 import "./scenes/intro.js"
+import "./scenes/finish.js"
 
 // Mit der `k.go` Funktion, können wir Kaboom sagen zu welcher Scene wir als
 // nächstes gehen möchten. In diesem Fall laden wir die `intro` Scene.
-k.go("intro")
+k.go("finish")
