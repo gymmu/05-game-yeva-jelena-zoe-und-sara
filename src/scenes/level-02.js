@@ -17,6 +17,8 @@ k.scene("level-02", async () => {
 
   addGeneralGameLogic()
 
+  k.camScale(1.2)
+
   k.onCollide("player", "cave", (player) => {
     if (player.hasKey === true) {
       k.go("level-03")
