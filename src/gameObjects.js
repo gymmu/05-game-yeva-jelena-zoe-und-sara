@@ -182,6 +182,7 @@ export function flowerRPG(x, y) {
     "heal",
     {
       isConsumable: true,
+      healAmount: 10,
     },
   ])
 }
@@ -195,21 +196,25 @@ export function mushroomRPG(x, y) {
     k.pos(x * TILESIZE, y * TILESIZE),
     k.area(),
     "obstacle",
+    "key",
     {
       isConsumable: true,
     },
   ])
 }
 
-export function fireballRPG(x, y) {
+export function fireballJumpAndRun(x, y) {
   k.add([
     k.sprite("fireball"),
     k.pos(x * TILESIZE, y * TILESIZE),
+    k.body({ isStatic: true }),
     k.area(),
     "obstacle",
+    "fireball",
     {
       isConsumable: true,
       dmgAmount: 30,
+      distanceToPlayer: Math.floor(Math.random() * 4) + 1,
     },
   ])
 }

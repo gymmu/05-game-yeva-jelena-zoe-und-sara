@@ -3,7 +3,7 @@ import createPlayer from "../player.js"
 import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
 
-import "./level-02.js"
+import "./finish.js"
 import "./lose.js"
 import { TILESIZE } from "../globals.js"
 
@@ -20,13 +20,13 @@ import { TILESIZE } from "../globals.js"
  * wir einige spezialisierte Funktionen verwenden.
  *
  */
-k.scene("level-01", async () => {
+k.scene("level-03", async () => {
   // Wir stellen die Gravitation ein, damit es sich um ein Jump'n'Run-Spiel
   // handelt.
   k.setGravity(1200)
 
   // Wir erstellen den Spieler
-  createPlayer()
+  //createPlayer()
 
   k.add([
     k.sprite("background", { width: k.width(), height: k.height() }),
@@ -41,7 +41,7 @@ k.scene("level-01", async () => {
   // Hier lassen wir die Spielwelt erstellen.
   // Wir müssen dieser Funktion auch den Spieler übergeben, damit die
   // Position vom Spieler richtig gesetzt werden kann.
-  await generateMapJumpAndRun("maps/level-01.txt")
+  await generateMapJumpAndRun("maps/level-03.txt")
 
   // Hier laden wir die generelle Spiellogik. Also was passieren soll wenn
   // der Spieler mit einem Objekt kollidiert.
@@ -52,7 +52,7 @@ k.scene("level-01", async () => {
   // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
-    k.go("level-02")
+    k.go("finish")
   })
 
   // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
@@ -64,6 +64,16 @@ k.scene("level-01", async () => {
     const player = k.get("player")[0]
     if (player.pos.y > 720) {
       k.go("lose")
+    }
+  })
+
+  k.onUpdate("fireball", (fireball) => {
+    const player = k.get("player")[0]
+    if (fireball.pos.x - fireball.distanceToPlayer * TILESIZE < player.pos.x) {
+      fireball.isStatic = false
+    }
+    if (fireball.isGrounded()) {
+      fireball.jump(600)
     }
   })
 })
