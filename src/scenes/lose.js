@@ -8,7 +8,9 @@ import "./level-01.js"
  */
 k.scene("lose", () => {
   const player = k.get("player")[0]
-  player.destroy()
+  if (player != null) {
+    player.destroy()
+  }
   k.add([
     k.text("Game over", { size: 44 }),
     k.pos(k.width() / 2, k.height() / 2),
