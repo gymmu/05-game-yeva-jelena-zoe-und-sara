@@ -13,4 +13,6 @@
       `src/maps.js`)
 - [ ] Präsentation für das Endprodukt in (`pres.html`) anpassen
 - [ ] scroll function für minigame erstellen (Yeva)
-- [ ] level 3 (mit gegner)
+- [x] level 3 (mit gegner)
+- [ ] fireball sprite erstellen
+- [ ] level 3 Finitionen
