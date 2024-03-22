@@ -67,6 +67,7 @@ export default function loadSprites() {
     tree: { x: 1 * TS, y: 1 * TS, width: TS, height: TS },
     cave: { x: 2 * TS, y: 1 * TS, width: TS, height: TS },
     wall: { x: 3 * TS, y: 1 * TS, width: TS, height: TS },
+    fireball: { x: 1 * TS, y: 0 * TS, width: TS, height: TS }, // TODO: Muss noch x und y anpassen, oder neues sheet einlesen
   })
 
   k.loadSpriteAtlas("sprites/background.jpeg", {
