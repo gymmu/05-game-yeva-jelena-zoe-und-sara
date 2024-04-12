@@ -38,6 +38,7 @@ export default function createPlayer() {
       dir: null,
       dead: false,
       max_hp: 100,
+      flowersCollected: 0,
     },
   ])
 
