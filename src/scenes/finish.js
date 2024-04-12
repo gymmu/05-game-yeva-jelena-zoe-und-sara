@@ -20,6 +20,14 @@ k.scene("finish", () => {
     k.anchor("center"),
   ])
 
+  k.add([
+    k.text("(Klick vor confetti)", {
+      size: 28,
+    }),
+    k.pos(k.width() / 2, k.height() / 2 + 20),
+    k.anchor("top"),
+  ])
+
   const DEF_COUNT = 80
   const DEF_GRAVITY = 800
   const DEF_AIR_DRAG = 0.9
