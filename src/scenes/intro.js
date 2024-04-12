@@ -1,5 +1,5 @@
 import { k } from "../game.js"
-import "./level-01.js"
+import "./level-00.js"
 
 /**
  * Die Funktion `scene` kommt von Kaboom, und erstellt uns einen
@@ -31,6 +31,6 @@ k.scene("intro", () => {
   // Szene gewechselt. In der nächsten Szene können wir `space` dann auch zum
   // Springen verwenden.
   k.onKeyPress("space", () => {
-    k.go("level-01")
+    k.go("level-00")
   })
 })
