@@ -69,6 +69,7 @@ export function flowerJumpAndRun(x, y) {
     k.body({ isStatic: true }),
     k.area(),
     "heal",
+    "flower",
     {
       isConsumable: true,
       healAmount: 5,
