@@ -13,7 +13,7 @@ k.scene("finish", () => {
   }
 
   k.add([
-    k.text("Congratulations, you won!", {
+    k.text("Yuppi, it's over!", {
       size: 32,
     }),
     k.pos(k.width() / 2, k.height() / 2),
