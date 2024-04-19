@@ -19,7 +19,7 @@ k.scene("finish", () => {
     k.pos(k.width() / 2, k.height() / 2),
     k.anchor("center"),
   ])
-
+  //Code für Confetti ist von der Website https://kaboomjs.com/play?example=confetti
   k.add([
     k.text("(Klick vor confetti)", {
       size: 28,

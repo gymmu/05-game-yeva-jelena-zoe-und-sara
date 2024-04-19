@@ -1,18 +1,24 @@
 import { k } from "../game.js"
 
 import "./level-01.js"
+//Code für Dialogen ist von https://kaboomjs.com/play?example=dialog
 
 k.scene("level-00", () => {
   // Define the dialogue data
   const dialogs = [
-    ["mushroomhero", "Where am I?"],
-    ["mushroomhero", "How did I get here?"],
-    ["mushroomhero", "you love me? pretty baby"],
-    ["mushroomhero", "mark is a stupid"],
-    ["mushroomhero", "he did not know how to take care of you..."],
-    ["mushroomhero", "you don't know me ..."],
-    ["mushroomhero", "what!"],
-    ["mushroomhero", "oh...hi "],
+    [
+      "mushroomhero",
+      "Ugh, that Bowser! I don't understand him, why can't he be calmer?",
+    ],
+    ["mushroomhero", "And where am I now? What should I do?"],
+    ["mushroomhero", "It's dark and chilly in here . . ."],
+    ["mushroomhero", "I wonder what Mario would do on my place."],
+    [
+      "mushroomhero",
+      "I'm scared, what if I won't be able to find the way back?",
+    ],
+    ["mushroomhero", "OK there's no reason for panic, it's gonna be fine."],
+    ["mushroomhero", "Well, here it begins . . ."],
   ]
 
   let curDialog = 0
