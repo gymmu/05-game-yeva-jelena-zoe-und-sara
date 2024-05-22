@@ -1,52 +1,65 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Projekt</title>
+    <title>Toad's Adventure</title>
 
     <link rel="stylesheet" href="./css/style.css" />
-</head>
 
-<body>
+    <script src="./src/minigame.js" type="module"></script>
+  </head>
+
+  <body>
+    <div class="container-liane">
+      <img src="img/Liane.png" />
+    </div>
     <main>
-        <h1>Unser Spiel</h1>
-        <div class="center margin-tb">
-            <a class="start-btn" href="game.html">Spiel starten</a>
+      <h1>Toad's Adventure</h1>
+      <div class="center margin-tb">
+        <a class="start-btn" href="game.html">Spiel starten</a>
+      </div>
+      <section>
+        <h2>Geschichte</h2>
+        Der Nebencharakter von "Super Mario" - Toad ist von Bowser aus dem Spiel
+        rausgeworfen worden und taucht in einem anderen Spiel auf. Er will
+        zurück zu Mario und entscheidet sich in der neuen Welt weiterzukommen um
+        den Weg in seine gewohnte Welt, zurück zu finden.
+      </section>
+      <section>
+        <h2>Spielprinzip</h2>
+        <div class="text-with-image">
+          <img src="img/screenshot1.PNG" />
+          <div class="text">
+            (Seitenansicht 1,3 Level) Sammle die Lebenspunkte (Blumen) und
+            vermeide die Pilze
+          </div>
         </div>
-        <section>
-            <h2>Intro</h2>
-            Eine kurze Einführung in unser Spiel.
-        </section>
-        <section>
-            <h2>Spielprinzip</h2>
-            <div class="text-with-image">
-                <div class="text">Hüpfe und habe Spass dabei.</div>
-                <img src="img/jump-n-run.png">
-            </div>
-            <div class="text-with-image">
-                <img src="img/rpg.png">
-                <div class="text">Sammle die Blume und gehe in die Höhle.</div>
-            </div>
-        </section>
-        <section>
-            <h2>Steuerung</h2>
-            <div class="controls-table">
-                <div class="controls-row">
-                    <pre>Space</pre>
-                    <span>Springen</span>
-                </div>
-                <div class="controls-row">
-                    <pre>Pfeiltasten</pre>
-                    <span>In Richtung laufen</span>
-                </div>
-            </div>
-        </section>
-        <div class="center margin-tb">
-            <a class="start-btn" href="game.html">Spiel starten</a>
+        <div class="text-with-image">
+          <img src="img/Screenshot2.PNG" />
+          <div class="text">(Obenansicht 2 Level) Verirre dich nicht!</div>
         </div>
+      </section>
+      <section>
+        <h2>Steuerung</h2>
+        <div class="controls-table">
+          <div class="controls-row">
+            <pre>Space</pre>
+            <span>Springen</span>
+          </div>
+          <div class="controls-row">
+            <pre>Pfeiltasten</pre>
+            <span>In Richtung laufen</span>
+          </div>
+        </div>
+      </section>
+      <div class="center margin-tb">
+        <a class="start-btn" href="game.html">Spiel starten</a>
+      </div>
+      <div class="margin-tb">
+        klicken Sie auf den schwarzen Rechteck und drücken Sie "Space" Taste:3
+        <canvas id="minigame"></canvas>
+      </div>
     </main>
-</body>
-
+  </body>
 </html>

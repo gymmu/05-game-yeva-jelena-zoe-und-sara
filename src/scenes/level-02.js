@@ -2,7 +2,7 @@ import { k, addGeneralGameLogic } from "../game.js"
 import { generateMapRPG } from "../map.js"
 import { loadKeyboardRPG } from "../keyboard.js"
 
-import "./finish.js"
+import "./level-03.js"
 
 /**
  * Szene für das Level 2.
@@ -17,14 +17,22 @@ k.scene("level-02", async () => {
 
   addGeneralGameLogic()
 
+  k.camScale(1.2)
+
   k.onCollide("player", "cave", (player) => {
-    if (player.hasFlower === true) {
-      k.go("finish")
+    if (player.hasKey === true) {
+      k.go("level-03")
     }
   })
 
   k.onCollide("player", "flower", (player, flower) => {
     flower.destroy()
-    player.hasFlower = true
+    player.hasKey = true
+  })
+
+  k.onCollide("player", "key", (player, key) => {
+    key.destroy()
+    player.hasKey = true
+    player.color = k.rgb(0, 255, 0)
   })
 })

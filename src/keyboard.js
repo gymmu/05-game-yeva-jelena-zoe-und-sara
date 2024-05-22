@@ -10,7 +10,7 @@ export function loadKeyboardJumpAndRun() {
   const player = getPlayer()
   // Wenn die Taste gedrückt wird, dann soll die Animation abgespielt werden.
   k.onKeyPress("left", () => {
-    player.play("runLeft")
+    player.play("left")
   })
   // Solange wie die Taste gedrückt wird, wird der Spieler in jedem Frame nach
   // links verschoben.
@@ -19,21 +19,21 @@ export function loadKeyboardJumpAndRun() {
   })
   // Wenn die Taste losgelassen wird, wird die idleAnimation abgespielt.
   k.onKeyRelease("left", () => {
-    player.play("idleLeft")
+    player.play("down")
   })
 
   k.onKeyPress("right", () => {
-    player.play("runRight")
+    player.play("right")
   })
   k.onKeyDown("right", () => {
     player.move(k.RIGHT.scale(player.speed))
   })
   k.onKeyRelease("right", () => {
-    player.play("idleRight")
+    player.play("down")
   })
 
   k.onKeyPress("space", () => {
-    player.jump()
+    player.doubleJump()
   })
 }
 
@@ -49,42 +49,42 @@ export function loadKeyboardJumpAndRun() {
 export function loadKeyboardRPG() {
   const player = getPlayer()
   k.onKeyPress("left", () => {
-    player.play("runLeft")
+    player.play("left")
   })
   k.onKeyDown("left", () => {
     player.move(k.LEFT.scale(player.speed))
   })
   k.onKeyRelease("left", () => {
-    player.play("idleLeft")
+    player.play("down")
   })
 
   k.onKeyPress("right", () => {
-    player.play("runRight")
+    player.play("right")
   })
   k.onKeyDown("right", () => {
     player.move(k.RIGHT.scale(player.speed))
   })
   k.onKeyRelease("right", () => {
-    player.play("idleRight")
+    player.play("down")
   })
 
   k.onKeyPress("up", () => {
-    player.play("runUp")
+    player.play("up")
   })
   k.onKeyDown("up", () => {
     player.move(k.UP.scale(player.speed))
   })
   k.onKeyRelease("up", () => {
-    player.play("idleUp")
+    player.play("down")
   })
 
   k.onKeyPress("down", () => {
-    player.play("runDown")
+    player.play("down")
   })
   k.onKeyDown("down", () => {
     player.move(k.DOWN.scale(player.speed))
   })
   k.onKeyRelease("down", () => {
-    player.play("idleDown")
+    player.play("down")
   })
 }

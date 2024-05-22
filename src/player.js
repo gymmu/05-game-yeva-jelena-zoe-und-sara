@@ -11,10 +11,11 @@ import { k } from "./game.js"
  */
 export default function createPlayer() {
   const player = k.add([
-    k.sprite("hero", { anim: "idleRight" }),
+    k.sprite("mushroomhero", { anim: "down" }),
     k.pos(0, 0),
     k.body(),
     k.area(),
+    k.doubleJump(2),
 
     // Gibt dem Spieler Lebenspunkte und die möglichkeit über die Funktionen
     // `hurt` und `heal` mit dem Spieler zu interagieren.
@@ -37,6 +38,7 @@ export default function createPlayer() {
       dir: null,
       dead: false,
       max_hp: 100,
+      flowersCollected: 0,
     },
   ])
 

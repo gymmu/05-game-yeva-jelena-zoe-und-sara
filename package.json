@@ -1,6 +1,6 @@
 {
-  "name": "05-game-project",
-  "version": "0.1.8",
+  "name": "Spielprojekt",
+  "version": "0.4.0",
   "description": "Einstiegspunkt in ein Spielprojekt.",
   "type": "module",
   "scripts": {
@@ -11,7 +11,12 @@
   },
   "keywords": [],
   "author": "Cedric Geissmann <cedric.geissmann@sbl.ch>",
-  "contributors": [],
+  "contributors": [
+    "Jovanoski Jelena <jelena.jovanoski@sbl.ch>",
+    "Donghi Zoe <donghi.zoe@sbl.ch>",
+    "Broch Jahandar Sara <brochjahandar.sara@sbl.ch>",
+    "Skotar Yeva <skotar.yeva@sbl.ch>"
+  ],
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.57.0",

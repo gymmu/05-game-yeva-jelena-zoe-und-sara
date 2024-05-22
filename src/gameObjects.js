@@ -69,6 +69,7 @@ export function flowerJumpAndRun(x, y) {
     k.body({ isStatic: true }),
     k.area(),
     "heal",
+    "flower",
     {
       isConsumable: true,
       healAmount: 5,
@@ -182,6 +183,7 @@ export function flowerRPG(x, y) {
     "heal",
     {
       isConsumable: true,
+      healAmount: 10,
     },
   ])
 }
@@ -195,8 +197,25 @@ export function mushroomRPG(x, y) {
     k.pos(x * TILESIZE, y * TILESIZE),
     k.area(),
     "obstacle",
+    "key",
     {
       isConsumable: true,
+    },
+  ])
+}
+
+export function fireballJumpAndRun(x, y) {
+  k.add([
+    k.sprite("fireball"),
+    k.pos(x * TILESIZE, y * TILESIZE),
+    k.body({ isStatic: true }),
+    k.area(),
+    "obstacle",
+    "fireball",
+    {
+      isConsumable: true,
+      dmgAmount: 30,
+      distanceToPlayer: Math.floor(Math.random() * 4) + 1,
     },
   ])
 }
